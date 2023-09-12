@@ -1,9 +1,7 @@
 package engine;
 
-import model.abilities.Ability;
-import model.abilities.AreaOfEffect;
-import model.abilities.DamagingAbility;
-import model.abilities.HealingAbility;
+import model.abilities.*;
+import model.effects.*;
 import model.world.*;
 import utils.CSVHandler;
 
@@ -38,7 +36,7 @@ public class Game {
            board[i+1][0]=firstPlayer.getTeam().get(i);
 
            secondPlayer.getTeam().get(i).setLocation(new Point(i+1,4));
-           board[i+1][4]=firstPlayer.getTeam().get(i);
+           board[i+1][4]=secondPlayer.getTeam().get(i);
        }
     }
 
@@ -60,10 +58,10 @@ public class Game {
 
 
     public static void loadAbilities(String filePath) {
+        availableAbilities=new ArrayList<Ability>();
         List<String[]> loadedAbilities = CSVHandler.load(filePath);
-        loadedAbilities.remove(0);
-        for (String[] row : loadedAbilities) {
-
+        for (int i=1;i<loadedAbilities.size();i++) {
+            String[] row = loadedAbilities.get(i);
             String abilityType = row[0];
             String name = row[1];
             int manaCost = Integer.parseInt(row[2]);
@@ -71,29 +69,36 @@ public class Game {
             int baseCooldown = Integer.parseInt(row[4]);
             String areaOfEffect = row[5];
             int requiredActionsPerTurn = Integer.parseInt(row[6]);
-
-            int effectDuration = Integer.parseInt(row[8]);
             AreaOfEffect area = AreaOfEffect.valueOf(areaOfEffect);
 
             switch (abilityType) {
                 case "CC":
-                      String effectName = row[7];
-//                    availableAbilities.add(new CrowdControlAbility(name, manaCost, baseCooldown, castRange,
-//                            requiredActionsPerTurn,
-//                            area,
-//                            // Creating Gffect object of a type given its name.
-//                            new Effect(effectName,)));
+                    String effectName = row[7];
+                    int effectDuration = Integer.parseInt(row[8]);
+
+                    Effect effect = switch (effectName) {
+                        case "Disarm" -> new Disarm(effectName, effectDuration);
+                        case "Dodge" -> new Dodge(effectName, effectDuration);
+                        case "Embrace" -> new Embrace(effectName, effectDuration);
+                        case "PowerUp" -> new PowerUp(effectName, effectDuration);
+                        case "Root" -> new Root(effectName, effectDuration);
+                        case "Shield" -> new Shield(effectName, effectDuration);
+                        case "Shock" -> new Shock(effectName, effectDuration);
+                        case "Silence" -> new Silence(effectName, effectDuration);
+                        case "SpeedUp" -> new SpeedUp(effectName, effectDuration);
+                        case "Stun" -> new Stun(effectName, effectDuration);
+                        default -> throw new IllegalArgumentException("Invalid subclass name: " + effectName);
+                    };
+                    availableAbilities.add(new CrowdControlAbility(name, manaCost, baseCooldown, castRange,
+                            requiredActionsPerTurn,area,effect));
                     break;
                 case "HEL":
                     int healAmount = Integer.parseInt(row[7]);
-                    availableAbilities.add(new HealingAbility(name, manaCost, baseCooldown, castRange,
-                            requiredActionsPerTurn, area,healAmount));
+                    availableAbilities.add(new HealingAbility(name, manaCost, baseCooldown, castRange, requiredActionsPerTurn, area,healAmount));
                     break;
                 case "DMG":
                     int damageAmount = Integer.parseInt(row[7]);
-                    availableAbilities.add(new DamagingAbility(name, manaCost, baseCooldown,
-                            castRange, requiredActionsPerTurn,
-                            area,damageAmount));
+                    availableAbilities.add(new DamagingAbility(name, manaCost, baseCooldown, castRange, requiredActionsPerTurn, area,damageAmount));
                     break;
                 default:
                     break;
@@ -112,10 +117,10 @@ public class Game {
 
     }
     public static void loadChampions(String filePath) {
-
+        availableChampions=new ArrayList<Champion>();
         List<String[]> loadedChampions = CSVHandler.load(filePath);
-        loadedChampions.remove(0);
-        for (String[] row : loadedChampions) {
+        for (int i=1;i<loadedChampions.size();i++) {
+            String[] row = loadedChampions.get(i);
             String championType = row[0];
             String name = row[1];
             int maxHP = Integer.parseInt(row[2]);
@@ -192,4 +197,6 @@ public class Game {
         return BOARDWIDTH;
     }
 
+
 }
+
