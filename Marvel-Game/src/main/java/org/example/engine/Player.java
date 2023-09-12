@@ -2,7 +2,7 @@ package engine;
 
 import java.util.ArrayList;
 
-import world.Champion;
+import model.world.Champion;
 
 public class Player {
     private String name;

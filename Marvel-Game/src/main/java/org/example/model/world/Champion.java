@@ -1,4 +1,4 @@
-package world;
+package model.world;
 
 import java.awt.Point;
 import java.util.ArrayList;
