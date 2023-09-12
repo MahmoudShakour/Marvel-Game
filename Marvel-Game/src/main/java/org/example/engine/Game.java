@@ -101,7 +101,16 @@ public class Game {
         }
     }
 
+    private static Ability getAbility(String abilityName) {
+        Ability targetAbility=null;
+        for (Ability ability : availableAbilities) {
+            if (ability.getName().equals(abilityName)) {
+                targetAbility= ability;
+            }
+        }
+        return targetAbility;
 
+    }
     public static void loadChampions(String filePath) {
 
         List<String[]> loadedChampions = CSVHandler.load(filePath);
@@ -122,13 +131,13 @@ public class Game {
             Champion champion;
 
             switch (championType) {
-                case "AntiHero":
+                case "A":
                     champion = new AntiHero(name, maxHP, mana, maxActions, speed, attackRange, attackDamage);
                     break;
-                case "Hero":
+                case "H":
                     champion = new Hero(name, maxHP, mana, maxActions, speed, attackRange, attackDamage);
                     break;
-                case "Villain":
+                case "V":
                     champion = new Villain(name, maxHP, mana, maxActions, speed, attackRange, attackDamage);
                     break;
                 default:
@@ -136,13 +145,9 @@ public class Game {
                     continue;
             }
 
-//            Search for ability by its name
-
-//
-//            champion.getAbilities().add(ability1);
-//            champion.getAbilities().add(ability2);
-//            champion.getAbilities().add(ability3);
-
+            champion.getAbilities().add(getAbility(ability1Name));
+            champion.getAbilities().add(getAbility(ability2Name));
+            champion.getAbilities().add(getAbility(ability3Name));
             availableChampions.add(champion);
         }
     }
