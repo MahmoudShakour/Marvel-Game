@@ -22,6 +22,7 @@ public abstract class Champion implements Damageable {
     private Point location;
     private boolean ShieldApplied;
     private boolean canUseAbility;
+    private boolean canMove;
 
     public Champion(String name, int maxHP, int mana, int maxActions, int speed, int attackRange, int attackDamage) {
         this.name = name;
@@ -39,6 +40,7 @@ public abstract class Champion implements Damageable {
         this.location = new Point();
         this.ShieldApplied = false;
         this.canUseAbility = true;
+        this.canMove = true;
 
     }
 
@@ -56,6 +58,14 @@ public abstract class Champion implements Damageable {
 
     public void setShieldApplied(boolean ShieldApplied) {
         this.ShieldApplied = ShieldApplied;
+    }
+
+    public boolean canMove() {
+        return this.canMove;
+    }
+
+    public void setCanMove(boolean canMove) {
+        this.canMove = canMove;
     }
 
     public String getName() {
