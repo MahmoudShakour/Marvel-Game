@@ -23,6 +23,7 @@ public abstract class Champion implements Damageable {
     private boolean ShieldApplied;
     private boolean canUseAbility;
     private boolean canMove;
+    private double dodgeChance;
 
     public Champion(String name, int maxHP, int mana, int maxActions, int speed, int attackRange, int attackDamage) {
         this.name = name;
@@ -41,6 +42,7 @@ public abstract class Champion implements Damageable {
         this.ShieldApplied = false;
         this.canUseAbility = true;
         this.canMove = true;
+        this.dodgeChance = 0;
 
     }
 
@@ -150,6 +152,14 @@ public abstract class Champion implements Damageable {
 
     public void setLocation(Point location) {
         this.location = location;
+    }
+
+    public double getDodgeChance() {
+        return this.dodgeChance;
+    }
+
+    public void setDodgeChance(double dodgeChance) {
+        this.dodgeChance = dodgeChance;
     }
 
 }
