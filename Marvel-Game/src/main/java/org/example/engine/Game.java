@@ -76,19 +76,41 @@ public class Game {
                     String effectName = row[7];
                     int effectDuration = Integer.parseInt(row[8]);
 
-                    Effect effect = switch (effectName) {
-                        case "Disarm" -> new Disarm(effectName, effectDuration);
-                        case "Dodge" -> new Dodge(effectName, effectDuration);
-                        case "Embrace" -> new Embrace(effectName, effectDuration);
-                        case "PowerUp" -> new PowerUp(effectName, effectDuration);
-                        case "Root" -> new Root(effectName, effectDuration);
-                        case "Shield" -> new Shield(effectName, effectDuration);
-                        case "Shock" -> new Shock(effectName, effectDuration);
-                        case "Silence" -> new Silence(effectName, effectDuration);
-                        case "SpeedUp" -> new SpeedUp(effectName, effectDuration);
-                        case "Stun" -> new Stun(effectName, effectDuration);
-                        default -> throw new IllegalArgumentException("Invalid subclass name: " + effectName);
-                    };
+                    Effect effect;
+                    switch (effectName) {
+                        case "Disarm":
+                            effect = new Disarm(effectName, effectDuration);
+                            break;
+                        case "Dodge":
+                            effect = new Dodge(effectName, effectDuration);
+                            break;
+                        case "Embrace":
+                            effect = new Embrace(effectName, effectDuration);
+                            break;
+                        case "PowerUp":
+                            effect = new PowerUp(effectName, effectDuration);
+                            break;
+                        case "Root":
+                            effect = new Root(effectName, effectDuration);
+                            break;
+                        case "Shield":
+                            effect = new Shield(effectName, effectDuration);
+                            break;
+                        case "Shock":
+                            effect = new Shock(effectName, effectDuration);
+                            break;
+                        case "Silence":
+                            effect = new Silence(effectName, effectDuration);
+                            break;
+                        case "SpeedUp":
+                            effect = new SpeedUp(effectName, effectDuration);
+                            break;
+                        case "Stun":
+                            effect = new Stun(effectName, effectDuration);
+                            break;
+                        default:
+                            throw new IllegalArgumentException("Invalid subclass name: " + effectName);
+                    }
                     availableAbilities.add(new CrowdControlAbility(name, manaCost, baseCooldown, castRange,
                             requiredActionsPerTurn,area,effect));
                     break;
