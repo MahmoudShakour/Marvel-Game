@@ -11,7 +11,7 @@ public class Cover {
 
     public Cover(int x, int y) {
         location = new Point(x, y);
-        currentHP = new Random().nextInt(minimumHealth, maximumHealth);
+        currentHP = new Random().nextInt(maximumHealth-minimumHealth)+minimumHealth;
     }
 
     public int getCurrentHP() {
