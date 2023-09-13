@@ -3,7 +3,7 @@ package model.world;
 import java.awt.Point;
 import java.util.Random;
 
-public class Cover {
+public class Cover implements Damageable {
     private static final int minimumHealth = 100;
     private static final int maximumHealth = 1000;
     private int currentHP;

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import model.abilities.Ability;
 import model.effects.Effect;
 
-public abstract class Champion {
+public abstract class Champion implements Damageable{
     private String name;
     private int maxHP;
     private int currentHP;
