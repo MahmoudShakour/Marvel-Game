@@ -11,15 +11,19 @@ public class Shield extends Effect {
 
   @Override
   public void apply(Champion champion) {
-    // Block the next attack or damaging ability cast on target.
+
     int champtionNewSpeed = (int) (champion.getSpeed() * (SPEED_PERCENT / 100.0));
-    
     champion.setSpeed(champtionNewSpeed);
+    
+    champion.setShieldApplied(true);
   }
   
   @Override
   public void remove(Champion champion) {
+    
     int champtionNewSpeed = (int) (champion.getSpeed() * (100.0/SPEED_PERCENT));
     champion.setSpeed(champtionNewSpeed);
+
+    champion.setShieldApplied(false);
   }
 }

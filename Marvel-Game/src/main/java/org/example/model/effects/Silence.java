@@ -10,19 +10,24 @@ public class Silence extends Effect {
 
   @Override
   public void apply(Champion champion) {
-    // Target cannot use abilities.
-    int championNewCurrentActionPoints = champion.getCurrentActionPoints() +2;
+
+    champion.setCanUseAbility(false);
+
+    int championNewCurrentActionPoints = champion.getCurrentActionPoints() + 2;
     champion.setCurrentActionPoints(championNewCurrentActionPoints);
-    
+
     int championNewMaxActionPointsPerTurn = champion.getMaxActionPointsPerTurn() + 2;
     champion.setMaxActionPointsPerTurn(championNewMaxActionPointsPerTurn);
   }
 
   @Override
   public void remove(Champion champion) {
-    int championNewCurrentActionPoints = champion.getCurrentActionPoints() -2;
+
+    champion.setCanUseAbility(true);
+
+    int championNewCurrentActionPoints = champion.getCurrentActionPoints() - 2;
     champion.setCurrentActionPoints(championNewCurrentActionPoints);
-    
+
     int championNewMaxActionPointsPerTurn = champion.getMaxActionPointsPerTurn() - 2;
     champion.setMaxActionPointsPerTurn(championNewMaxActionPointsPerTurn);
   }

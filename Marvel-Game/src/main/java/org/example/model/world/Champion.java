@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import model.abilities.Ability;
 import model.effects.Effect;
 
-public abstract class Champion implements Damageable{
+public abstract class Champion implements Damageable {
     private String name;
     private int maxHP;
     private int currentHP;
@@ -20,6 +20,8 @@ public abstract class Champion implements Damageable{
     private ArrayList<Ability> abilities;
     private Condition condition;
     private Point location;
+    private boolean ShieldApplied;
+    private boolean canUseAbility;
 
     public Champion(String name, int maxHP, int mana, int maxActions, int speed, int attackRange, int attackDamage) {
         this.name = name;
@@ -35,6 +37,25 @@ public abstract class Champion implements Damageable{
         this.abilities = new ArrayList<>();
         this.condition = Condition.ACTIVE;
         this.location = new Point();
+        this.ShieldApplied = false;
+        this.canUseAbility = true;
+
+    }
+
+    public boolean CanUseAbility() {
+        return canUseAbility;
+    }
+
+    public void setCanUseAbility(boolean canUseAbility) {
+        this.canUseAbility = canUseAbility;
+    }
+
+    public boolean isShieldApplied() {
+        return ShieldApplied;
+    }
+
+    public void setShieldApplied(boolean ShieldApplied) {
+        this.ShieldApplied = ShieldApplied;
     }
 
     public String getName() {
