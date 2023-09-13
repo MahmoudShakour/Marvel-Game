@@ -1,4 +1,5 @@
-package model.effects;
+import model.effects.Effect;
+import model.effects.EffectType;
 
 public class Embrace extends Effect {
 

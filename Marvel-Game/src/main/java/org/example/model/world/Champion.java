@@ -1,10 +1,10 @@
 package model.world;
 
-import java.awt.Point;
-import java.util.ArrayList;
-
 import model.abilities.Ability;
 import model.effects.Effect;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 public abstract class Champion implements Damageable {
     private String name;
@@ -71,7 +71,15 @@ public abstract class Champion implements Damageable {
     }
 
     public void setCurrentHP(int currentHP) {
-        this.currentHP = currentHP;
+        if(currentHP<=maxHP){
+            this.currentHP=maxHP;
+        }
+        else if(currentHP <= 0){
+            this.currentHP=0;
+        }else{
+            this.currentHP = currentHP;
+        }
+
     }
 
     public int getMana() {
