@@ -2,8 +2,6 @@ package model.world;
 
 import model.abilities.Ability;
 import model.effects.Effect;
-import model.effects.Embrace;
-import model.effects.Stun;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -99,6 +97,7 @@ public abstract class Champion implements Damageable, Comparable<Champion> {
             this.currentHP = maxHP;
         } else if (currentHP <= 0) {
             this.currentHP = 0;
+            this.condition = Condition.KNOCKEDOUT;
         } else {
             this.currentHP = currentHP;
         }
@@ -194,43 +193,21 @@ public abstract class Champion implements Damageable, Comparable<Champion> {
 
     }
 
-    private double getDistanceFrom(Champion target) {
-        double deltaX = this.location.x - target.location.x;
-        double deltaY = this.location.y - target.location.y;
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Champion))
+            return false;
 
-        return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        Champion that = (Champion) obj;
+        return that.location.equals(this.location);
     }
 
-    public void useLeaderAbility(ArrayList<Champion> targets) {
-        if (this instanceof Hero) {
-
-            // Todo:
-            // Removes all negative effects from the player’s entire team and adds an
-            // Embrace effect to them which lasts for 2 turns.
-
-            for (Champion champion : targets)
-                new Embrace("Embrace", 2).apply(champion);
-
-        } else if (this instanceof Villain) {
-
-            // Todo:
-            // Immediately eliminates (knocks out) all enemy champions with less than 30%
-            // health points
-
-            double ratio = 30.0 / 100;
-            for (Champion champion : targets)
-                if (champion.getCurrentHP() < Math.floor(champion.getCurrentHP() * ratio))
-                    champion.setCurrentHP(0);
-
-        } else if (this instanceof AntiHero) {
-
-            // Todo:
-            // All champions on the board except for the leaders of each team will be
-            // stunned for 2 turns.
-
-            for (Champion champion : targets)
-                new Stun("Stun", 2).apply(champion);
-
-        }
+    protected int getDistanceFrom(Damageable target) {
+        int deltaX = this.location.x - target.getLocation().x;
+        int deltaY = this.location.y - target.getLocation().y;
+        return Math.abs(deltaX) + Math.abs(deltaY);
     }
+
+    public abstract void useLeaderAbility(ArrayList<Champion> targets);
+
 }
