@@ -11,6 +11,9 @@ public class Root extends Effect {
     super(name, duration, EffectType.DEBUFF);
   }
 
+  // todo
+  // use Rooted condition
+  // validate in setCondition in Champion
   @Override
   public void apply(Champion champion) {
     champion.setCanMove(false);
