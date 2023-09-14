@@ -18,12 +18,8 @@ public class Disarm extends Effect {
     champion.setCanUseNormalAttacks(false);
 
     ArrayList<Ability> currentAbilities = champion.getAbilities();
-    boolean havePunch = false;
-    for (Ability abilities : currentAbilities)
-      havePunch |= abilities.getName().equals("Punch");
 
-    if (!havePunch)
-      currentAbilities.add(new DamagingAbility("Punch", 0, 1, 1, 1, AreaOfEffect.SINGLETARGET, 50));
+    currentAbilities.add(new DamagingAbility("Punch", 0, 1, 1, 1, AreaOfEffect.SINGLETARGET, 50));
 
   }
 
