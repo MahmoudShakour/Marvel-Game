@@ -24,6 +24,7 @@ public abstract class Champion implements Damageable {
     private boolean canUseAbility;
     private boolean canMove;
     private double dodgeChance;
+    private boolean canUseNormalAttacks;
 
     public Champion(String name, int maxHP, int mana, int maxActions, int speed, int attackRange, int attackDamage) {
         this.name = name;
@@ -43,7 +44,16 @@ public abstract class Champion implements Damageable {
         this.canUseAbility = true;
         this.canMove = true;
         this.dodgeChance = 0;
+        this.canUseNormalAttacks = true;
 
+    }
+
+    public boolean getCanUseNormalAttacks() {
+        return this.canUseNormalAttacks;
+    }
+
+    public void setCanUseNormalAttacks(boolean canUseNormalAttacks) {
+        this.canUseNormalAttacks = canUseNormalAttacks;
     }
 
     public boolean CanUseAbility() {
@@ -83,12 +93,11 @@ public abstract class Champion implements Damageable {
     }
 
     public void setCurrentHP(int currentHP) {
-        if(currentHP<=maxHP){
-            this.currentHP=maxHP;
-        }
-        else if(currentHP <= 0){
-            this.currentHP=0;
-        }else{
+        if (currentHP <= maxHP) {
+            this.currentHP = maxHP;
+        } else if (currentHP <= 0) {
+            this.currentHP = 0;
+        } else {
             this.currentHP = currentHP;
         }
 
@@ -144,6 +153,10 @@ public abstract class Champion implements Damageable {
 
     public ArrayList<Ability> getAbilities() {
         return abilities;
+    }
+
+    public void setAbilities(ArrayList<Ability> abilities) {
+        this.abilities = abilities;
     }
 
     public Condition getCondition() {
