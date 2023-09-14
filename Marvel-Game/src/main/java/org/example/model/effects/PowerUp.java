@@ -1,7 +1,6 @@
 package model.effects;
 
 import model.abilities.Ability;
-import model.abilities.CrowdControlAbility;
 import model.abilities.DamagingAbility;
 import model.abilities.HealingAbility;
 import model.world.Champion;
