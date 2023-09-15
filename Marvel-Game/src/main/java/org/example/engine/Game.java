@@ -1,5 +1,6 @@
 package engine;
 
+import exceptions.UnallowedMovementException;
 import model.abilities.*;
 import model.effects.*;
 import model.world.*;
@@ -33,10 +34,10 @@ public class Game {
    private void placeChampions(){
        for (int i=0;i<3;i++) {
            firstPlayer.getTeam().get(i).setLocation(new Point(i+1,0));
-           board[i+1][0]=firstPlayer.getTeam().get(i);
+           board[0][i+1]=firstPlayer.getTeam().get(i);
 
            secondPlayer.getTeam().get(i).setLocation(new Point(i+1,4));
-           board[i+1][4]=secondPlayer.getTeam().get(i);
+           board[4][i+1]=secondPlayer.getTeam().get(i);
        }
     }
 
@@ -176,6 +177,56 @@ public class Game {
             champion.getAbilities().add(getAbility(ability2Name));
             champion.getAbilities().add(getAbility(ability3Name));
             availableChampions.add(champion);
+        }
+    }
+    public Champion getCurrentChampion(){
+        return turnOrder.peek();
+    }
+    public void move(Direction d) throws UnallowedMovementException {
+        int x= (int)getCurrentChampion().getLocation().getX();
+        int y=(int)getCurrentChampion().getLocation().getY();
+        int newX=x,newY=y;
+        boolean inValidMove=false;
+        if(d.equals(Direction.UP)){
+            newY=y+1;
+        } else if(d.equals(Direction.DOWN)){
+            newY=y-1;
+        } else if(d.equals(Direction.RIGHT)){
+            newX=x+1;
+        }else if(d.equals(Direction.LEFT)){
+            newX=x-1;
+        }
+        if((board[newY][newX] instanceof Champion) || (board[newY][newX] instanceof Cover) ){
+            throw new UnallowedMovementException("Invalid Move!");
+        }else{
+            board[y][x]=new Object();
+            getCurrentChampion().setLocation(new Point(newX,newY));
+            board[newY][newX]=getCurrentChampion();
+        }
+    }
+
+
+    public Player checkGameOver(){
+        boolean firstPlayerChampionsAlive=true;
+        boolean secondPlayerChampionsAlive=true;
+        for (Champion champion:firstPlayer.getTeam()) {
+            if(champion.getCondition().equals(Condition.KNOCKEDOUT)){
+                firstPlayerChampionsAlive=false;
+                break;
+            }
+        }
+        for (Champion champion:secondPlayer.getTeam()) {
+            if(champion.getCondition().equals(Condition.KNOCKEDOUT)){
+                secondPlayerChampionsAlive=false;
+                break;
+            }
+        }
+        if(!firstPlayerChampionsAlive){
+            return secondPlayer;
+        }else if(!secondPlayerChampionsAlive){
+            return firstPlayer;
+        }else{
+            return null;
         }
     }
 
