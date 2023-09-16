@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Random;
 
+import exceptions.ChampionDisarmedException;
+import exceptions.NotEnoughResourcesException;
+
 public class Game {
     private Player firstPlayer;
     private Player secondPlayer;
@@ -182,9 +185,6 @@ public class Game {
         }
     }
 
-    public Champion getCurrentChampion() {
-        return turnOrder.peek();
-    }
 
     public void move(Direction d) throws UnallowedMovementException {
         int x = (int) getCurrentChampion().getLocation().getX();
@@ -231,6 +231,108 @@ public class Game {
         } else {
             return null;
         }
+    }
+
+    /*
+     * A method that is called when the current champion wishes
+     * to perform a normal attack in a particular direction. The method should
+     * retrieve the first
+     * Damageable within the champion’s normal attack range at the given direction
+     * and perform the
+     * attack on it.
+     * Carefully consider the special interaction between the different champion
+     * types as well as the
+     * different effects that the target can have. Refer to the game description for
+     * that interaction.
+     * Champions should deal 50% extra damage if the interaction condition is met.
+     * All normal attacks
+     * require two action points in order to be performed.
+     */
+    public Champion getCurrentChampion() {
+        return turnOrder.peek();
+    }
+
+    public void attack(Direction direction) throws ChampionDisarmedException, NotEnoughResourcesException {
+
+        Champion currentChampion = getCurrentChampion();
+        int currentChampionActionPoints = currentChampion.getCurrentActionPoints();
+        int currentChampionRange = currentChampion.getAttackRange();
+        int currentChampionDamage = currentChampion.getAttackDamage();
+        Point currentChampionLocation = currentChampion.getLocation();
+        if (currentChampion.getCondition() != Condition.ACTIVE) {
+            throw new ChampionDisarmedException();
+        }
+        if (currentChampionActionPoints < 2) {
+            throw new NotEnoughResourcesException();
+        }
+
+        currentChampion.setCurrentActionPoints(currentChampionActionPoints - 2);
+        Champion targetChampion = getTargetChampion(currentChampionLocation, direction, currentChampionRange);
+        if (((currentChampion instanceof Hero) && (targetChampion instanceof Villain)) ||
+                ((currentChampion instanceof Villain) && (targetChampion instanceof Hero)) ||
+                ((currentChampion instanceof AntiHero) && (targetChampion instanceof AntiHero))) {
+            targetChampion.setCurrentHP(targetChampion.getCurrentHP() - (int) (currentChampionDamage * 1.5));
+        } else {
+            targetChampion.setCurrentHP(targetChampion.getCurrentHP() - currentChampionDamage);
+        }
+    }
+
+    private Champion getTargetChampion(Point currentChampionLocation, Direction direction, int range) {
+
+        int currentX = (int) currentChampionLocation.getX();
+        int currentY = (int) currentChampionLocation.getY();
+        int deltaX = 0, deltaY = 0;
+        if (direction.equals(Direction.DOWN)) {
+            deltaY = -range;
+        } else if (direction.equals(Direction.UP)) {
+            deltaY = range;
+        } else if (direction.equals(Direction.RIGHT)) {
+            deltaX = range;
+        } else if (direction.equals(Direction.LEFT)) {
+            deltaX = -range;
+        }
+
+        while ((currentX != currentChampionLocation.getX() + deltaX)
+                && (currentY != currentChampionLocation.getY() + deltaY)) {
+            for (Champion c : availableChampions) {
+                if (c.getLocation().equals(new Point(currentX, currentY))) {
+                    return c;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /*
+     * A method that is called when the current champion
+     * wishes to cast an ability that is not limited to a direction or a particular
+     * target.
+     */
+    public void castAbility(Ability ability) {
+        if (ability.getCastArea().equals(AreaOfEffect.SELFTARGET)) {
+            ArrayList<Damageable> target = new ArrayList<>();
+            target.add(getCurrentChampion());
+            ability.execute(target);
+        }
+    }
+
+    /*
+     * A method that is called when the
+     * current champion wishes to cast an ability with DIRECTIONAL area of effect.
+     */
+    public void castAbility(Ability ability, Direction direction) {
+        
+    }
+
+    /*
+     * A method that is called when the
+     * current champion wishes to cast an ability with SINGLETARGET area of effect
+     * and that target
+     * is located at cell (x,y) on the board.
+     */
+    public void castAbility(Ability ability, int targetXLocation, int targetYLocation) {
+
     }
 
     public Player getFirstPlayer() {
