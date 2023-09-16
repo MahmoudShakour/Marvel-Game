@@ -37,26 +37,6 @@ public class Hero extends Champion {
             addedEffect.apply(champion);
         }
 
-        // // Todo:
-        // // Immediately eliminates (knocks out) all enemy champions with less than 30%
-        // // health points
-
-        // double ratio = 30.0 / 100;
-        // for (Champion champion : targets)
-        // if (champion.getCurrentHP() < Math.floor(champion.getCurrentHP() * ratio)) {
-        // champion.setCurrentHP(0);
-        // champion.setCondition(Condition.KNOCKEDOUT);
-
-        // }
-
-        // // Todo:
-        // // All champions on the board except for the leaders of each team will be
-        // // stunned for 2 turns.
-
-        // for (Champion champion : targets)
-        // new Stun("Stun", 2).apply(champion);
-
-        // }
     }
 
 }
