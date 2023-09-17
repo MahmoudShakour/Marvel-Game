@@ -1,6 +1,9 @@
 package engine;
 
 import exceptions.ChampionDisarmedException;
+import exceptions.GameActionException;
+import exceptions.LeaderAbilityAlreadyUsedException;
+import exceptions.LeaderNotCurrentException;
 import exceptions.NotEnoughResourcesException;
 import exceptions.UnallowedMovementException;
 import model.abilities.*;
@@ -20,18 +23,18 @@ public class Game {
     private boolean firstLeaderAbilityUsed;
     private boolean secondLeaderAbilityUsed;
     private Object[][] board;
-    private static ArrayList<Champion> availableChampions=new ArrayList<>();
-    private static ArrayList<Ability> availableAbilities=new ArrayList<>();
+    private static ArrayList<Champion> availableChampions = new ArrayList<>();
+    private static ArrayList<Ability> availableAbilities = new ArrayList<>();
 
     private PriorityQueue<Champion> turnOrder;
-    private final static int BOARDHEIGHT=500;
-    private static int BOARDWIDTH=500;
+    private final static int BOARDHEIGHT = 500;
+    private static int BOARDWIDTH = 500;
 
     public Game(Player first, Player second) {
         this.firstPlayer = first;
         this.secondPlayer = second;
-        board=new Object[5][5];
-        turnOrder=new PriorityQueue<>();
+        board = new Object[5][5];
+        turnOrder = new PriorityQueue<>();
         placeCovers();
         placeChampions();
     }
@@ -62,7 +65,7 @@ public class Game {
     }
 
     public static void loadAbilities(String filePath) {
-        filePath="Marvel-Game/src/main/resources/"+filePath;
+        filePath = "Marvel-Game/src/main/resources/" + filePath;
         availableAbilities = new ArrayList<Ability>();
         List<String[]> loadedAbilities = CSVHandler.load(filePath);
         for (int i = 1; i < loadedAbilities.size(); i++) {
@@ -147,7 +150,7 @@ public class Game {
     }
 
     public static void loadChampions(String filePath) {
-        filePath="Marvel-Game/src/main/resources/"+filePath;
+        filePath = "Marvel-Game/src/main/resources/" + filePath;
         availableChampions = new ArrayList<Champion>();
         List<String[]> loadedChampions = CSVHandler.load(filePath);
         for (int i = 1; i < loadedChampions.size(); i++) {
@@ -200,8 +203,8 @@ public class Game {
         } else if (d.equals(Direction.LEFT)) {
             newX = x - 1;
         }
-        boolean outOfBoard=newX>4 || newX<0 || newY<0 || newY>4;
-        if ((board[newY][newX] instanceof Champion) || (board[newY][newX] instanceof Cover)|| outOfBoard) {
+        boolean outOfBoard = newX > 4 || newX < 0 || newY < 0 || newY > 4;
+        if ((board[newY][newX] instanceof Champion) || (board[newY][newX] instanceof Cover) || outOfBoard) {
             throw new UnallowedMovementException("Invalid Move!");
         } else {
             board[y][x] = new Object();
@@ -215,17 +218,17 @@ public class Game {
         int secondPlayerChampionsAlive = 0;
         for (Champion champion : firstPlayer.getTeam()) {
             if (champion.getCondition().equals(Condition.KNOCKEDOUT)) {
-                firstPlayerChampionsAlive +=1;
+                firstPlayerChampionsAlive += 1;
             }
         }
         for (Champion champion : secondPlayer.getTeam()) {
             if (champion.getCondition().equals(Condition.KNOCKEDOUT)) {
-                secondPlayerChampionsAlive +=1;
+                secondPlayerChampionsAlive += 1;
             }
         }
-        if (firstPlayerChampionsAlive==0) {
+        if (firstPlayerChampionsAlive == 0) {
             return secondPlayer;
-        } else if (secondPlayerChampionsAlive==0) {
+        } else if (secondPlayerChampionsAlive == 0) {
             return firstPlayer;
         } else {
             return null;
@@ -438,7 +441,7 @@ public class Game {
         return nonLeaderTargets;
     }
 
-    public void useLeaderAbility() {
+    public void useLeaderAbility() throws GameActionException {
         /*
          * 
          * Todo:
@@ -459,11 +462,11 @@ public class Game {
         // Check the first player to play
         if (firstPlayer.getTeam().contains(getCurrentChampion())) {
             if (firstLeaderAbilityUsed == true)
-                return;
+                throw new LeaderAbilityAlreadyUsedException();
 
             Champion leader = firstPlayer.getLeader();
             if (!leader.equals(getCurrentChampion()))
-                return;
+                throw new LeaderNotCurrentException();
 
             ArrayList<Champion> targets = new ArrayList<Champion>();
             if (leader instanceof Hero) {
@@ -483,11 +486,11 @@ public class Game {
         } else {
 
             if (secondLeaderAbilityUsed == false)
-                return;
+                throw new LeaderAbilityAlreadyUsedException();
 
             Champion leader = secondPlayer.getLeader();
             if (!leader.equals(getCurrentChampion()))
-                return;
+                throw new LeaderNotCurrentException();
 
             ArrayList<Champion> targets = new ArrayList<Champion>();
             if (leader instanceof Hero) {
@@ -567,7 +570,5 @@ public class Game {
         }
 
     }
-
-
 
 }
