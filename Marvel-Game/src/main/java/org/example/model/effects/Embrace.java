@@ -1,8 +1,5 @@
 package model.effects;
 
-import model.effects.Effect;
-import model.effects.EffectType;
-
 import model.world.Champion;
 
 public class Embrace extends Effect {
@@ -12,6 +9,9 @@ public class Embrace extends Effect {
     super(name, duration, EffectType.BUFF);
   }
 
+   public Embrace(int duration) {
+    super("embrace", duration, EffectType.BUFF);
+  }
   @Override
   public void apply(Champion champion) {
     double ratio = (INCREASE_PERCENTAGE / 100.0);

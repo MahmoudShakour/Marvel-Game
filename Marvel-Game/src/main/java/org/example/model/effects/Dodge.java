@@ -10,6 +10,10 @@ public class Dodge extends Effect {
     super(name, duration, EffectType.BUFF);
   }
 
+  public Dodge(int duration) {
+    super("dodge", duration, EffectType.DEBUFF);
+  }
+
   @Override
   public void apply(Champion champion) {
     champion.setSpeed((int) (champion.getSpeed() * SPEED_INCREASE_RATIO));

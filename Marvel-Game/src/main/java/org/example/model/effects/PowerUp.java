@@ -12,6 +12,10 @@ public class PowerUp extends Effect {
     super(name, duration, EffectType.BUFF);
   }
 
+  public PowerUp(int duration) {
+    super("powerUp", duration, EffectType.DEBUFF);
+  }
+
   @Override
   public void apply(Champion champion) {
 

@@ -10,6 +10,10 @@ public class Shock extends Effect {
     super(name, duration, EffectType.DEBUFF);
   }
 
+  public Shock(int duration) {
+    super("shock", duration, EffectType.DEBUFF);
+  }
+
   @Override
   public void apply(Champion champion) {
 

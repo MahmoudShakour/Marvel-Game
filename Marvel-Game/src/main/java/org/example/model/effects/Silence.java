@@ -8,6 +8,10 @@ public class Silence extends Effect {
     super(name, duration, EffectType.DEBUFF);
   }
 
+  public Silence(int duration) {
+    super("silence", duration, EffectType.DEBUFF);
+  }
+
   @Override
   public void apply(Champion champion) {
 

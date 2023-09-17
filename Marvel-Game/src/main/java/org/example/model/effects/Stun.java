@@ -9,6 +9,10 @@ public class Stun extends Effect {
     super(name, duration, EffectType.DEBUFF);
   }
 
+  public Stun(int duration) {
+    super("stun", duration, EffectType.DEBUFF);
+  }
+
   @Override
   public void apply(Champion champion) {
     Condition championNewCondition = Condition.INACTIVE;

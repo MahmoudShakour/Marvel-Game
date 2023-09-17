@@ -11,6 +11,10 @@ public class Root extends Effect {
     super(name, duration, EffectType.DEBUFF);
   }
 
+  public Root(int duration) {
+    super("root", duration, EffectType.DEBUFF);
+  }
+
   // todo
   // use Rooted condition
   // validate in setCondition in Champion

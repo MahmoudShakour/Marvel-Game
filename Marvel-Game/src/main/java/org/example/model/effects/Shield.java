@@ -9,6 +9,10 @@ public class Shield extends Effect {
     super(name, duration, EffectType.BUFF);
   }
 
+  public Shield(int duration) {
+    super("shield", duration, EffectType.DEBUFF);
+  }
+
   @Override
   public void apply(Champion champion) {
 

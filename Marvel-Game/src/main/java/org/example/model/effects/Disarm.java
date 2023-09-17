@@ -13,6 +13,10 @@ public class Disarm extends Effect {
     super(name, duration, EffectType.DEBUFF);
   }
 
+  public Disarm(int duration) {
+    super("disarm", duration, EffectType.DEBUFF);
+  }
+
   @Override
   public void apply(Champion champion) {
     champion.setCanUseNormalAttacks(false);
