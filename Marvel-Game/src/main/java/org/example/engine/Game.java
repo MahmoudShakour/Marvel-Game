@@ -28,17 +28,17 @@ public class Game {
 
     private PriorityQueue turnOrder;
 
-    private final static int BOARDHEIGHT = 500;
-    private static int BOARDWIDTH = 500;
+    private final static int BOARDHEIGHT = 5;
+    private final static int BOARDWIDTH = 5;
 
     public Game(Player first, Player second) {
         this.firstPlayer = first;
         this.secondPlayer = second;
         board = new Object[5][5];
-        turnOrder = new PriorityQueue(50);
-        loadAbilities("Abilities.csv");
-        loadChampions("Champions.csv");
-
+        turnOrder = new PriorityQueue(6);
+        
+        availableChampions.clear();
+        availableAbilities.clear();
         placeCovers();
         placeChampions();
     }
