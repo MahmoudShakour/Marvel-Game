@@ -14,7 +14,6 @@ import utils.CSVHandler;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Random;
 
 public class Game {
@@ -44,13 +43,15 @@ public class Game {
     }
 
     private void placeChampions() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < firstPlayer.getTeam().size(); i++) {
             firstPlayer.getTeam().get(i).setLocation(new Point(i + 1, 0));
             board[0][i + 1] = firstPlayer.getTeam().get(i);
-
+        }
+        for (int i = 0; i < secondPlayer.getTeam().size(); i++) {
             secondPlayer.getTeam().get(i).setLocation(new Point(i + 1, 4));
             board[4][i + 1] = secondPlayer.getTeam().get(i);
         }
+
     }
 
     private void placeCovers() {
@@ -153,7 +154,9 @@ public class Game {
     }
 
     public static void loadChampions(String fileName) {
-
+        if(availableAbilities.size()==0){
+            loadAbilities("Abilities.csv");
+        }
         availableChampions = new ArrayList<Champion>();
         List<String[]> loadedChampions = CSVHandler.load(fileName);
         for (int i = 1; i < loadedChampions.size(); i++) {
