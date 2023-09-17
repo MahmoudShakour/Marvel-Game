@@ -5,7 +5,7 @@ import model.world.Damageable;
 import java.util.ArrayList;
 
 public class HealingAbility extends Ability {
-    int healAmount;
+    private int healAmount;
 
     public HealingAbility(String name, int cost, int baseCooldown, int castRange, AreaOfEffect area, int required,
             int healAmount) {

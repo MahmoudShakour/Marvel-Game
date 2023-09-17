@@ -19,7 +19,7 @@ public class Cover implements Damageable {
     }
 
     public void setCurrentHP(int currentHP) {
-        if(currentHP<=maximumHealth){
+        if(currentHP>=maximumHealth){
             this.currentHP=maximumHealth;
         }
         else if(currentHP <= 0){

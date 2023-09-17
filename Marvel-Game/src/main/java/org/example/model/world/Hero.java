@@ -24,7 +24,7 @@ public class Hero extends Champion {
             Iterator<Effect> effectsItr = champion.getAppliedEffects().iterator();
             while (effectsItr.hasNext()) {
                 Effect currentEffect = effectsItr.next();
-                if (currentEffect.getEffectType().equals(EffectType.DEBUFF)) {
+                if (currentEffect.getType().equals(EffectType.DEBUFF)) {
                     currentEffect.remove(champion);
                     effectsItr.remove();
                 }

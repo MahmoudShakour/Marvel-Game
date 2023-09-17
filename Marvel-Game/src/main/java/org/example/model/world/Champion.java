@@ -6,7 +6,7 @@ import model.effects.Effect;
 import java.awt.*;
 import java.util.ArrayList;
 
-public abstract class Champion implements Damageable, Comparable<Champion> {
+public class Champion implements Damageable, Comparable<Champion> {
     private String name;
     private int maxHP;
     private int currentHP;
@@ -39,7 +39,6 @@ public abstract class Champion implements Damageable, Comparable<Champion> {
         this.appliedEffects = new ArrayList<>();
         this.abilities = new ArrayList<>();
         this.condition = Condition.ACTIVE;
-        this.location = new Point();
         this.ShieldApplied = false;
         this.canUseAbility = true;
         this.canMove = true;
@@ -93,7 +92,7 @@ public abstract class Champion implements Damageable, Comparable<Champion> {
     }
 
     public void setCurrentHP(int currentHP) {
-        if (currentHP <= maxHP) {
+        if (currentHP >= maxHP) {
             this.currentHP = maxHP;
         } else if (currentHP <= 0) {
             this.currentHP = 0;
@@ -156,10 +155,6 @@ public abstract class Champion implements Damageable, Comparable<Champion> {
         return abilities;
     }
 
-    public void setAbilities(ArrayList<Ability> abilities) {
-        this.abilities = abilities;
-    }
-
     public Condition getCondition() {
         return condition;
     }
@@ -208,6 +203,7 @@ public abstract class Champion implements Damageable, Comparable<Champion> {
         return Math.abs(deltaX) + Math.abs(deltaY);
     }
 
-    public abstract void useLeaderAbility(ArrayList<Champion> targets);
+    public void useLeaderAbility(ArrayList<Champion> targets) {
+    };
 
 }

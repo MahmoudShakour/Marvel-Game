@@ -13,9 +13,11 @@ public class Effect {
     this.type = type;
   }
 
-  public  void apply(Champion champion){};
+  public void apply(Champion champion) {
+  };
 
-  public  void remove(Champion champion){};
+  public void remove(Champion champion) {
+  };
 
   public String getName() {
     return this.name;
@@ -25,7 +27,11 @@ public class Effect {
     return this.duration;
   }
 
-  public EffectType getEffectType() {
+  public void setDuration(int duration) {
+    this.duration = duration;
+  }
+
+  public EffectType getType() {
     return this.type;
   }
 

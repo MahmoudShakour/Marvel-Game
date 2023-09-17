@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class DamagingAbility extends Ability {
 
-    int damageAmount;
+    private int damageAmount;
 
     public DamagingAbility(String name, int cost, int baseCooldown, int castRange, AreaOfEffect area, int required,
             int damageAmount) {
