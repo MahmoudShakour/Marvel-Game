@@ -6,11 +6,12 @@ import model.world.Damageable;
 
 import java.util.ArrayList;
 
-public class CrowdControlAbility extends Ability{
+public class CrowdControlAbility extends Ability {
     Effect effect;
 
-    public CrowdControlAbility(String name, int cost, int baseCooldown, int castRange, int required, AreaOfEffect area, Effect effect) {
-        super(name, cost, baseCooldown, castRange, required, area);
+    public CrowdControlAbility(String name, int cost, int baseCooldown, int castRange, AreaOfEffect area, int required,
+            Effect effect) {
+        super(name, cost, baseCooldown, castRange, area, required);
         this.effect = effect;
     }
 
@@ -20,10 +21,10 @@ public class CrowdControlAbility extends Ability{
 
     @Override
     public void execute(ArrayList<Damageable> targets) {
-        for (Damageable target:targets ) {
-            if(target instanceof Champion && target.getCurrentHP()>0){
+        for (Damageable target : targets) {
+            if (target instanceof Champion && target.getCurrentHP() > 0) {
                 effect.apply((Champion) target);
-//                logic for removing the applied effect !
+                // logic for removing the applied effect !
             }
         }
     }

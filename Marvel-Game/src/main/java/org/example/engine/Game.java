@@ -114,18 +114,18 @@ public class Game {
                         default:
                             throw new IllegalArgumentException("Invalid subclass name: " + effectName);
                     }
-                    availableAbilities.add(new CrowdControlAbility(name, manaCost, baseCooldown, castRange,
-                            requiredActionsPerTurn, area, effect));
+                    availableAbilities.add(new CrowdControlAbility(name, manaCost, baseCooldown, castRange, area,
+                            requiredActionsPerTurn, effect));
                     break;
                 case "HEL":
                     int healAmount = Integer.parseInt(row[7]);
-                    availableAbilities.add(new HealingAbility(name, manaCost, baseCooldown, castRange,
-                            requiredActionsPerTurn, area, healAmount));
+                    availableAbilities.add(new HealingAbility(name, manaCost, baseCooldown, castRange, area,
+                            requiredActionsPerTurn, healAmount));
                     break;
                 case "DMG":
                     int damageAmount = Integer.parseInt(row[7]);
-                    availableAbilities.add(new DamagingAbility(name, manaCost, baseCooldown, castRange,
-                            requiredActionsPerTurn, area, damageAmount));
+                    availableAbilities.add(new DamagingAbility(name, manaCost, baseCooldown, castRange, area,
+                            requiredActionsPerTurn, damageAmount));
                     break;
                 default:
                     break;

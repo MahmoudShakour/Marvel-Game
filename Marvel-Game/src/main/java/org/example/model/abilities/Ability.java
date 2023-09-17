@@ -13,7 +13,7 @@ public abstract class Ability {
     private int requiredActionPoints;
     private AreaOfEffect castArea;
 
-    public Ability(String name, int cost, int baseCooldown, int castRange, int required, AreaOfEffect area) {
+    public Ability(String name, int cost, int baseCooldown, int castRange,AreaOfEffect area, int required) {
         this.name = name;
         this.manaCost = cost;
         this.baseCooldown = baseCooldown;
