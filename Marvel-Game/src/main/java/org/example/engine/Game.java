@@ -21,16 +21,18 @@ public class Game {
     private boolean firstLeaderAbilityUsed;
     private boolean secondLeaderAbilityUsed;
     private Object[][] board;
-    private static ArrayList<Champion> availableChampions;
-    private static ArrayList<Ability> availableAbilities;
+    private static ArrayList<Champion> availableChampions=new ArrayList<>();
+    private static ArrayList<Ability> availableAbilities=new ArrayList<>();
 
-    PriorityQueue<Champion> turnOrder;
-    private static int BOARDHEIGHT;
-    private static int BOARDWIDTH;
+    private PriorityQueue<Champion> turnOrder;
+    private final static int BOARDHEIGHT=500;
+    private static int BOARDWIDTH=500;
 
     public Game(Player first, Player second) {
         this.firstPlayer = first;
         this.secondPlayer = second;
+        board=new Object[5][5];
+        turnOrder=new PriorityQueue<>();
         placeCovers();
         placeChampions();
     }
@@ -189,7 +191,6 @@ public class Game {
         int x = (int) getCurrentChampion().getLocation().getX();
         int y = (int) getCurrentChampion().getLocation().getY();
         int newX = x, newY = y;
-        boolean inValidMove = false;
         if (d.equals(Direction.UP)) {
             newY = y + 1;
         } else if (d.equals(Direction.DOWN)) {
@@ -412,11 +413,11 @@ public class Game {
         return turnOrder;
     }
 
-    public static int getBOARDHEIGHT() {
+    public static int getBoardheight() {
         return BOARDHEIGHT;
     }
 
-    public static int getBOARDWIDTH() {
+    public static int getBoardwidth() {
         return BOARDWIDTH;
     }
 
