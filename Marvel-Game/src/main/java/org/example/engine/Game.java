@@ -14,6 +14,7 @@ import java.util.Random;
 
 import exceptions.ChampionDisarmedException;
 import exceptions.LeaderAbilityAlreadyUsedException;
+import exceptions.LeaderNotCurrentException;
 import exceptions.NotEnoughResourcesException;
 
 public class Game {
@@ -440,7 +441,7 @@ public class Game {
         return nonLeaderTargets;
     }
 
-    public void useLeaderAbility() throws LeaderAbilityAlreadyUsedException {
+    public void useLeaderAbility() throws LeaderAbilityAlreadyUsedException, LeaderNotCurrentException {
         /*
          * 
          * Todo:
@@ -465,7 +466,7 @@ public class Game {
 
             Champion leader = firstPlayer.getLeader();
             if (!leader.equals(getCurrentChampion()))
-                return;
+                throw new LeaderNotCurrentException();
 
             ArrayList<Champion> targets = new ArrayList<Champion>();
             if (leader instanceof Hero) {
@@ -489,7 +490,7 @@ public class Game {
 
             Champion leader = secondPlayer.getLeader();
             if (!leader.equals(getCurrentChampion()))
-                return;
+                throw new LeaderNotCurrentException();
 
             ArrayList<Champion> targets = new ArrayList<Champion>();
             if (leader instanceof Hero) {
