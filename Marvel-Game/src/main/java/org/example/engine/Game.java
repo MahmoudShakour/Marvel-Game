@@ -14,7 +14,7 @@ import utils.CSVHandler;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PriorityQueue;
+
 import java.util.Random;
 
 public class Game {
@@ -26,7 +26,8 @@ public class Game {
     private static ArrayList<Champion> availableChampions = new ArrayList<>();
     private static ArrayList<Ability> availableAbilities = new ArrayList<>();
 
-    private PriorityQueue<Champion> turnOrder;
+    private PriorityQueue turnOrder;
+
     private final static int BOARDHEIGHT = 500;
     private static int BOARDWIDTH = 500;
 
@@ -34,10 +35,10 @@ public class Game {
         this.firstPlayer = first;
         this.secondPlayer = second;
         board = new Object[5][5];
-        turnOrder = new PriorityQueue<>();
+        turnOrder = new PriorityQueue(50);
         loadAbilities("Abilities.csv");
         loadChampions("Champions.csv");
-        
+
         placeCovers();
         placeChampions();
     }
@@ -253,7 +254,7 @@ public class Game {
      * require two action points in order to be performed.
      */
     public Champion getCurrentChampion() {
-        return turnOrder.peek();
+        return (Champion) turnOrder.peekMin();
     }
 
     public void attack(Direction direction) throws ChampionDisarmedException, NotEnoughResourcesException {
@@ -413,7 +414,7 @@ public class Game {
         return availableAbilities;
     }
 
-    public PriorityQueue<Champion> getTurnOrder() {
+    public PriorityQueue getTurnOrder() {
         return turnOrder;
     }
 
@@ -529,16 +530,16 @@ public class Game {
          * his effects and ability timers updated.
          * Also, his current action points should be properly reset.
          */
-        turnOrder.poll();
+        turnOrder.remove();
         while (true) {
             if (turnOrder.size() == 0)
                 prepareChampionTurns();
 
             while (turnOrder.size() != 0) {
-                Champion currentChampion = turnOrder.peek();
+                Champion currentChampion = (Champion) turnOrder.peekMin();
                 // what about Knockout ?
                 if (currentChampion.getCondition() == Condition.INACTIVE) {
-                    turnOrder.poll();
+                    turnOrder.remove();
                     continue;
                 } else {
                     // Updating Timers
@@ -562,12 +563,12 @@ public class Game {
 
         for (Champion champion : firstPlayer.getTeam()) {
             if (champion.getCondition() != Condition.KNOCKEDOUT) {
-                turnOrder.add(champion);
+                turnOrder.insert(champion);
             }
         }
         for (Champion champion : secondPlayer.getTeam()) {
             if (champion.getCondition() != Condition.KNOCKEDOUT) {
-                turnOrder.add(champion);
+                turnOrder.insert(champion);
             }
         }
 
