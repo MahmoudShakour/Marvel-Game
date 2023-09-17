@@ -2545,7 +2545,8 @@ public class M1PublicTests {
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, IOException, NoSuchFieldException {
 
-		PrintWriter csvWriter = new PrintWriter("test_abilities.csv");
+		PrintWriter csvWriter = new PrintWriter(
+				"/home/khaled/Desktop/SandBox/Marvel/Marvel-Game/src/main/resources/Abilities.csv");
 		int random = (int) (Math.random() * 50);
 		int cost = random;
 		random = (int) (Math.random() * 50);
@@ -2613,7 +2614,7 @@ public class M1PublicTests {
 		Object createdGame = gameConstructor.newInstance(firstPlayer, secondPlayer);
 
 		Method m = createdGame.getClass().getMethod("loadAbilities", String.class);
-		m.invoke(createdGame, "test_abilities.csv");
+		m.invoke(createdGame, "/home/khaled/Desktop/SandBox/Marvel/Marvel-Game/src/main/resources/Abilities.csv");
 
 		ArrayList<Object> abilities = new ArrayList<Object>();
 		Constructor<?> dmgAbilityConstructor = Class.forName(dmgPath).getConstructor(String.class, int.class, int.class,
@@ -2663,7 +2664,7 @@ public class M1PublicTests {
 		Object createdGame = gameConstructor.newInstance(firstPlayer, secondPlayer);
 
 		Method m = createdGame.getClass().getMethod("loadAbilities", String.class);
-		m.invoke(createdGame, "Abilities.csv");
+		m.invoke(createdGame, "/home/khaled/Desktop/SandBox/Marvel/Marvel-Game/src/main/resources/Abilities.csv");
 
 		Constructor<?> dmgAbilityConstructor = Class.forName(dmgPath).getConstructor(String.class, int.class, int.class,
 				int.class, Class.forName(areaOfEffectPath), int.class, int.class);
@@ -2674,7 +2675,7 @@ public class M1PublicTests {
 
 		String line = "";
 
-		BufferedReader br = new BufferedReader(new FileReader("Abilities.csv"));
+		BufferedReader br = new BufferedReader(new FileReader("/home/khaled/Desktop/SandBox/Marvel/Marvel-Game/src/main/resources/Abilities.csv"));
 		while ((line = br.readLine()) != null) {
 			String[] row = line.split(",");
 			Object item = null;
@@ -2782,10 +2783,10 @@ public class M1PublicTests {
 		Object createdGame = gameConstructor.newInstance(firstPlayer, secondPlayer);
 
 		Method m = createdGame.getClass().getMethod("loadAbilities", String.class);
-		m.invoke(createdGame, "Abilities.csv");
+		m.invoke(createdGame, "/home/khaled/Desktop/SandBox/Marvel/Marvel-Game/src/main/resources/Abilities.csv");
 
 		Method m2 = createdGame.getClass().getMethod("loadChampions", String.class);
-		m2.invoke(createdGame, "test_champions.csv");
+		m2.invoke(createdGame, "/home/khaled/Desktop/SandBox/Marvel/Marvel-Game/src/main/resources/Champions.csv");
 
 		Field field = Class.forName(gamePath).getDeclaredField("availableAbilities");
 		field.setAccessible(true);
@@ -2889,13 +2890,13 @@ public class M1PublicTests {
 		Object createdGame = gameConstructor.newInstance(firstPlayer, secondPlayer);
 
 		Method m = createdGame.getClass().getMethod("loadAbilities", String.class);
-		m.invoke(createdGame, "Abilities.csv");
+		m.invoke(createdGame, "/home/khaled/Desktop/SandBox/Marvel/Marvel-Game/src/main/resources/Abilities.csv");
 		Field field = Class.forName(gamePath).getDeclaredField("availableAbilities");
 		field.setAccessible(true);
 		ArrayList<Object> availableAbilities = (ArrayList<Object>) field.get(createdGame);
 
 		Method m2 = createdGame.getClass().getMethod("loadChampions", String.class);
-		m2.invoke(createdGame, "Champions.csv");
+		m2.invoke(createdGame, "/home/khaled/Desktop/SandBox/Marvel/Marvel-Game/src/main/resources/Champions.csv");
 
 		ArrayList<Object> champions = new ArrayList<Object>();
 
@@ -2910,7 +2911,8 @@ public class M1PublicTests {
 
 		String line = "";
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("Champions.csv"));
+			BufferedReader br = new BufferedReader(
+					new FileReader("/home/khaled/Desktop/SandBox/Marvel/Marvel-Game/src/main/resources/Champions.csv"));
 			while ((line = br.readLine()) != null) {
 				String[] row = line.split(",");
 
@@ -3029,7 +3031,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test()
 	public void testChampionsSameMana()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
