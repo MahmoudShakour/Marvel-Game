@@ -371,6 +371,13 @@ public class Game {
      */
     public void castAbility(Ability ability, int targetXLocation, int targetYLocation) {
 
+        for (Champion c : availableChampions) {
+            if (c.getLocation().equals(new Point(targetXLocation, targetYLocation))) {
+                ArrayList<Damageable> target = new ArrayList<>();
+                target.add(c);
+                ability.execute(target);
+            }
+        }
     }
 
     public Player getFirstPlayer() {
