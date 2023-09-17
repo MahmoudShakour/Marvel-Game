@@ -11,7 +11,11 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        this.team = new ArrayList<>(3);
+        this.team = new ArrayList<>();
+        this.team.add(new Champion("Shakor", 100, 100, 100, 0, 100, 100));
+        this.team.add(new Champion("Khaled", 100, 100, 100, 0, 100, 100));
+        this.team.add(new Champion("Abdu", 100, 100, 100, 0, 100, 100));
+        this.setLeader(this.team.get(1));
     }
 
     public void setLeader(Champion leader) {

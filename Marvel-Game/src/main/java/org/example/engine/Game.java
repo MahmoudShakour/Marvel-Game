@@ -35,6 +35,9 @@ public class Game {
         this.secondPlayer = second;
         board = new Object[5][5];
         turnOrder = new PriorityQueue<>();
+        loadAbilities("Abilities.csv");
+        loadChampions("Champions.csv");
+        
         placeCovers();
         placeChampions();
     }
@@ -64,10 +67,9 @@ public class Game {
         }
     }
 
-    public static void loadAbilities(String filePath) {
-        filePath = "Marvel-Game/src/main/resources/" + filePath;
+    public static void loadAbilities(String fileName) {
         availableAbilities = new ArrayList<Ability>();
-        List<String[]> loadedAbilities = CSVHandler.load(filePath);
+        List<String[]> loadedAbilities = CSVHandler.load(fileName);
         for (int i = 1; i < loadedAbilities.size(); i++) {
             String[] row = loadedAbilities.get(i);
             String abilityType = row[0];
@@ -149,10 +151,10 @@ public class Game {
 
     }
 
-    public static void loadChampions(String filePath) {
-        filePath = "Marvel-Game/src/main/resources/" + filePath;
+    public static void loadChampions(String fileName) {
+
         availableChampions = new ArrayList<Champion>();
-        List<String[]> loadedChampions = CSVHandler.load(filePath);
+        List<String[]> loadedChampions = CSVHandler.load(fileName);
         for (int i = 1; i < loadedChampions.size(); i++) {
             String[] row = loadedChampions.get(i);
             String championType = row[0];

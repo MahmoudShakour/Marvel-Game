@@ -4,6 +4,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -15,6 +16,8 @@ import java.util.concurrent.locks.Condition;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import utils.CSVHandler;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -2674,7 +2677,8 @@ public class M1PublicTests {
 
 		String line = "";
 
-		BufferedReader br = new BufferedReader(new FileReader("Abilities.csv"));
+		BufferedReader br = new BufferedReader(
+				new InputStreamReader(M1PublicTests.class.getResourceAsStream("Abilities.csv")));
 		while ((line = br.readLine()) != null) {
 			String[] row = line.split(",");
 			Object item = null;
@@ -2910,7 +2914,8 @@ public class M1PublicTests {
 
 		String line = "";
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("Champions.csv"));
+			BufferedReader br = new BufferedReader(
+					new InputStreamReader(M1PublicTests.class.getResourceAsStream("Champions.csv")));
 			while ((line = br.readLine()) != null) {
 				String[] row = line.split(",");
 

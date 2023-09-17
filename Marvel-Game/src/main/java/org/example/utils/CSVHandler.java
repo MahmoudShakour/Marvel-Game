@@ -2,8 +2,8 @@ package utils;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +12,8 @@ public abstract class CSVHandler {
     BufferedReader br;
     List<String[]> dataTable = new ArrayList<>();
     try {
-      br = new BufferedReader(new FileReader(filename));
+      br = new BufferedReader(
+          new InputStreamReader(CSVHandler.class.getResourceAsStream(filename)));
       while (true) {
         String line = br.readLine();
         if (line == null)
