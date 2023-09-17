@@ -13,6 +13,7 @@ import java.util.PriorityQueue;
 import java.util.Random;
 
 import exceptions.ChampionDisarmedException;
+import exceptions.LeaderAbilityAlreadyUsedException;
 import exceptions.NotEnoughResourcesException;
 
 public class Game {
@@ -21,18 +22,18 @@ public class Game {
     private boolean firstLeaderAbilityUsed;
     private boolean secondLeaderAbilityUsed;
     private Object[][] board;
-    private static ArrayList<Champion> availableChampions=new ArrayList<>();
-    private static ArrayList<Ability> availableAbilities=new ArrayList<>();
+    private static ArrayList<Champion> availableChampions = new ArrayList<>();
+    private static ArrayList<Ability> availableAbilities = new ArrayList<>();
 
     private PriorityQueue<Champion> turnOrder;
-    private final static int BOARDHEIGHT=500;
-    private static int BOARDWIDTH=500;
+    private final static int BOARDHEIGHT = 500;
+    private static int BOARDWIDTH = 500;
 
     public Game(Player first, Player second) {
         this.firstPlayer = first;
         this.secondPlayer = second;
-        board=new Object[5][5];
-        turnOrder=new PriorityQueue<>();
+        board = new Object[5][5];
+        turnOrder = new PriorityQueue<>();
         placeCovers();
         placeChampions();
     }
@@ -439,7 +440,7 @@ public class Game {
         return nonLeaderTargets;
     }
 
-    public void useLeaderAbility() {
+    public void useLeaderAbility() throws LeaderAbilityAlreadyUsedException {
         /*
          * 
          * Todo:
@@ -460,7 +461,7 @@ public class Game {
         // Check the first player to play
         if (firstPlayer.getTeam().contains(getCurrentChampion())) {
             if (firstLeaderAbilityUsed == true)
-                return;
+                throw new LeaderAbilityAlreadyUsedException();
 
             Champion leader = firstPlayer.getLeader();
             if (!leader.equals(getCurrentChampion()))
@@ -484,7 +485,7 @@ public class Game {
         } else {
 
             if (secondLeaderAbilityUsed == false)
-                return;
+                throw new LeaderAbilityAlreadyUsedException();
 
             Champion leader = secondPlayer.getLeader();
             if (!leader.equals(getCurrentChampion()))
