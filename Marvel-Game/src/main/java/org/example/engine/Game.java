@@ -1,5 +1,7 @@
 package engine;
 
+import exceptions.ChampionDisarmedException;
+import exceptions.NotEnoughResourcesException;
 import exceptions.UnallowedMovementException;
 import model.abilities.*;
 import model.effects.*;
@@ -11,9 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Random;
-
-import exceptions.ChampionDisarmedException;
-import exceptions.NotEnoughResourcesException;
 
 public class Game {
     private Player firstPlayer;
@@ -63,6 +62,7 @@ public class Game {
     }
 
     public static void loadAbilities(String filePath) {
+        filePath="Marvel-Game/src/main/resources/"+filePath;
         availableAbilities = new ArrayList<Ability>();
         List<String[]> loadedAbilities = CSVHandler.load(filePath);
         for (int i = 1; i < loadedAbilities.size(); i++) {
@@ -147,6 +147,7 @@ public class Game {
     }
 
     public static void loadChampions(String filePath) {
+        filePath="Marvel-Game/src/main/resources/"+filePath;
         availableChampions = new ArrayList<Champion>();
         List<String[]> loadedChampions = CSVHandler.load(filePath);
         for (int i = 1; i < loadedChampions.size(); i++) {
@@ -176,7 +177,6 @@ public class Game {
                     champion = new Villain(name, maxHP, mana, maxActions, speed, attackRange, attackDamage);
                     break;
                 default:
-                    // Handle unknown champion type!
                     continue;
             }
 
@@ -200,7 +200,8 @@ public class Game {
         } else if (d.equals(Direction.LEFT)) {
             newX = x - 1;
         }
-        if ((board[newY][newX] instanceof Champion) || (board[newY][newX] instanceof Cover)) {
+        boolean outOfBoard=newX>4 || newX<0 || newY<0 || newY>4;
+        if ((board[newY][newX] instanceof Champion) || (board[newY][newX] instanceof Cover)|| outOfBoard) {
             throw new UnallowedMovementException("Invalid Move!");
         } else {
             board[y][x] = new Object();
@@ -210,23 +211,21 @@ public class Game {
     }
 
     public Player checkGameOver() {
-        boolean firstPlayerChampionsAlive = true;
-        boolean secondPlayerChampionsAlive = true;
+        int firstPlayerChampionsAlive = 0;
+        int secondPlayerChampionsAlive = 0;
         for (Champion champion : firstPlayer.getTeam()) {
             if (champion.getCondition().equals(Condition.KNOCKEDOUT)) {
-                firstPlayerChampionsAlive = false;
-                break;
+                firstPlayerChampionsAlive +=1;
             }
         }
         for (Champion champion : secondPlayer.getTeam()) {
             if (champion.getCondition().equals(Condition.KNOCKEDOUT)) {
-                secondPlayerChampionsAlive = false;
-                break;
+                secondPlayerChampionsAlive +=1;
             }
         }
-        if (!firstPlayerChampionsAlive) {
+        if (firstPlayerChampionsAlive==0) {
             return secondPlayer;
-        } else if (!secondPlayerChampionsAlive) {
+        } else if (secondPlayerChampionsAlive==0) {
             return firstPlayer;
         } else {
             return null;
@@ -568,4 +567,6 @@ public class Game {
         }
 
     }
+
+
 }
