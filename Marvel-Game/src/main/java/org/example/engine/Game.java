@@ -185,7 +185,6 @@ public class Game {
         }
     }
 
-
     public void move(Direction d) throws UnallowedMovementException {
         int x = (int) getCurrentChampion().getLocation().getX();
         int y = (int) getCurrentChampion().getLocation().getY();
@@ -310,11 +309,26 @@ public class Game {
      * target.
      */
     public void castAbility(Ability ability) {
+        ArrayList<Damageable> target = new ArrayList<>();
         if (ability.getCastArea().equals(AreaOfEffect.SELFTARGET)) {
-            ArrayList<Damageable> target = new ArrayList<>();
             target.add(getCurrentChampion());
             ability.execute(target);
+        } else if (ability.getCastArea().equals(AreaOfEffect.SURROUND)) {
+            for (Champion c : availableChampions) {
+                if (getDistance(c, getCurrentChampion()) <= ability.getCastRange()) {
+                    target.add(c);
+                }
+            }
+            ability.execute(target);
         }
+    }
+
+    private int getDistance(Champion a, Champion b) {
+        Point firstLocation = a.getLocation();
+        Point secondLocation = b.getLocation();
+        int xDistance = (int) Math.abs(firstLocation.getX() - secondLocation.getX());
+        int yDistance = (int) Math.abs(firstLocation.getY() - secondLocation.getY());
+        return Math.max(xDistance, yDistance);
     }
 
     /*
@@ -322,7 +336,7 @@ public class Game {
      * current champion wishes to cast an ability with DIRECTIONAL area of effect.
      */
     public void castAbility(Ability ability, Direction direction) {
-        
+
     }
 
     /*
