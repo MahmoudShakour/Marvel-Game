@@ -11,7 +11,7 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        this.team = new ArrayList<Champion>();
+        this.team = new ArrayList<Champion>(3);
     }
 
     public void setLeader(Champion leader) {

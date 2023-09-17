@@ -36,7 +36,7 @@ public class Game {
         board = new Object[5][5];
         turnOrder = new PriorityQueue<>();
         placeCovers();
-        placeChampions();
+        // placeChampions();
     }
 
     private void placeChampions() {
