@@ -336,7 +336,31 @@ public class Game {
      * current champion wishes to cast an ability with DIRECTIONAL area of effect.
      */
     public void castAbility(Ability ability, Direction direction) {
+        Point currentChampionLocation = getCurrentChampion().getLocation();
+        int currentX = (int) currentChampionLocation.getX();
+        int currentY = (int) currentChampionLocation.getY();
+        int range = ability.getCastRange();
+        int deltaX = 0, deltaY = 0;
+        if (direction.equals(Direction.DOWN)) {
+            deltaY = -range;
+        } else if (direction.equals(Direction.UP)) {
+            deltaY = range;
+        } else if (direction.equals(Direction.RIGHT)) {
+            deltaX = range;
+        } else if (direction.equals(Direction.LEFT)) {
+            deltaX = -range;
+        }
 
+        ArrayList<Damageable> target = new ArrayList<>();
+        while ((currentX != currentChampionLocation.getX() + deltaX)
+                && (currentY != currentChampionLocation.getY() + deltaY)) {
+            for (Champion c : availableChampions) {
+                if (c.getLocation().equals(new Point(currentX, currentY))) {
+                    target.add(c);
+                }
+            }
+        }
+        ability.execute(target);
     }
 
     /*
