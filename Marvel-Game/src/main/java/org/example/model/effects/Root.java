@@ -1,8 +1,5 @@
 package model.effects;
 
-import model.effects.Effect;
-import model.effects.EffectType;
-
 import model.world.Champion;
 
 public class Root extends Effect {
@@ -12,7 +9,7 @@ public class Root extends Effect {
   }
 
   public Root(int duration) {
-    super("root", duration, EffectType.DEBUFF);
+    super("Root", duration, EffectType.DEBUFF);
   }
 
   // todo

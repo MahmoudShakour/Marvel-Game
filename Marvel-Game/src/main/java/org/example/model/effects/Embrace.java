@@ -10,7 +10,7 @@ public class Embrace extends Effect {
   }
 
    public Embrace(int duration) {
-    super("embrace", duration, EffectType.BUFF);
+    super("Embrace", duration, EffectType.BUFF);
   }
   @Override
   public void apply(Champion champion) {

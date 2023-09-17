@@ -13,7 +13,7 @@ public class PowerUp extends Effect {
   }
 
   public PowerUp(int duration) {
-    super("powerUp", duration, EffectType.DEBUFF);
+    super("PowerUp", duration, EffectType.BUFF);
   }
 
   @Override

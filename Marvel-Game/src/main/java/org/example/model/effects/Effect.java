@@ -2,7 +2,7 @@ package model.effects;
 
 import model.world.Champion;
 
-public abstract class Effect {
+public class Effect {
   private String name;
   private int duration;
   private EffectType type;
@@ -13,9 +13,9 @@ public abstract class Effect {
     this.type = type;
   }
 
-  public abstract void apply(Champion champion);
+  public  void apply(Champion champion){};
 
-  public abstract void remove(Champion champion);
+  public  void remove(Champion champion){};
 
   public String getName() {
     return this.name;

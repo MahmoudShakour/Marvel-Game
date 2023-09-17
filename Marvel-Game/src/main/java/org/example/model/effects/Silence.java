@@ -9,7 +9,7 @@ public class Silence extends Effect {
   }
 
   public Silence(int duration) {
-    super("silence", duration, EffectType.DEBUFF);
+    super("Silence", duration, EffectType.DEBUFF);
   }
 
   @Override

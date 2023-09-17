@@ -11,7 +11,7 @@ public class Shock extends Effect {
   }
 
   public Shock(int duration) {
-    super("shock", duration, EffectType.DEBUFF);
+    super("Shock", duration, EffectType.DEBUFF);
   }
 
   @Override

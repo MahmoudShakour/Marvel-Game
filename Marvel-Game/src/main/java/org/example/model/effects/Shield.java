@@ -10,7 +10,7 @@ public class Shield extends Effect {
   }
 
   public Shield(int duration) {
-    super("shield", duration, EffectType.DEBUFF);
+    super("Shield", duration, EffectType.BUFF);
   }
 
   @Override

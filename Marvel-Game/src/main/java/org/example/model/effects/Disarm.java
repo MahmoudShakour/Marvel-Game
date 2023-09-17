@@ -14,7 +14,7 @@ public class Disarm extends Effect {
   }
 
   public Disarm(int duration) {
-    super("disarm", duration, EffectType.DEBUFF);
+    super("Disarm", duration, EffectType.DEBUFF);
   }
 
   @Override
@@ -23,7 +23,7 @@ public class Disarm extends Effect {
 
     ArrayList<Ability> currentAbilities = champion.getAbilities();
 
-    currentAbilities.add(new DamagingAbility("Punch", 0, 1, 1, 1, AreaOfEffect.SINGLETARGET, 50));
+    currentAbilities.add(new DamagingAbility("Punch", 0, 1, 1,AreaOfEffect.SINGLETARGET, 1, 50));
 
   }
 

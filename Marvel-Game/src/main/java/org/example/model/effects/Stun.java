@@ -10,7 +10,7 @@ public class Stun extends Effect {
   }
 
   public Stun(int duration) {
-    super("stun", duration, EffectType.DEBUFF);
+    super("Stun", duration, EffectType.DEBUFF);
   }
 
   @Override

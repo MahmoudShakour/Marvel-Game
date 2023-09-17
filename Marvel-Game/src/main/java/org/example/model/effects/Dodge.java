@@ -11,7 +11,7 @@ public class Dodge extends Effect {
   }
 
   public Dodge(int duration) {
-    super("dodge", duration, EffectType.DEBUFF);
+    super("Dodge", duration, EffectType.BUFF);
   }
 
   @Override

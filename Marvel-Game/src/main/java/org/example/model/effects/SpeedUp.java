@@ -9,7 +9,7 @@ public class SpeedUp extends Effect {
     super(name, duration, EffectType.BUFF);
   }
   public SpeedUp(int duration) {
-    super("speedUp", duration, EffectType.DEBUFF);
+    super("SpeedUp", duration, EffectType.BUFF);
   }
 
   @Override
