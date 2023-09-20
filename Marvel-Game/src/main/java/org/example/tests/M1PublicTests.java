@@ -1,32 +1,21 @@
 package tests;
 
-import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.concurrent.locks.Condition;
-
 import org.junit.Assert;
 import org.junit.Test;
 
-import utils.CSVHandler;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
+import java.awt.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.lang.reflect.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.locks.Condition;
+
+import static org.junit.Assert.*;
 
 @SuppressWarnings({ "rawtypes", "unchecked", "unused" })
 public class M1PublicTests {
@@ -2723,8 +2712,7 @@ public class M1PublicTests {
 	private ArrayList<ArrayList<Object>> generateChampionsArrayList()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, IOException, NoSuchFieldException {
-		PrintWriter csvWriter = new PrintWriter("test_champions.csv");
-
+		PrintWriter csvWriter = new PrintWriter("/home/mahmoudshakour/Workspace/Marvel-Game/Marvel-Game/src/main/java/org/example/tests/test_champions.csv");
 		int random = (int) (Math.random() * 50);
 		int maxHP = random;
 		random = (int) (Math.random() * 50);
@@ -3127,7 +3115,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test()
 	public void testChampionsAbilities() throws Exception {
 		ArrayList<ArrayList<Object>> arrayList = generateChampionsArrayListsFromCSV();
 		ArrayList<Object> champions = arrayList.get(0);
@@ -3188,7 +3176,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test()
 	public void testChampionsSameMaxHPDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {

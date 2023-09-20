@@ -9,7 +9,7 @@ import exceptions.UnallowedMovementException;
 import model.abilities.*;
 import model.effects.*;
 import model.world.*;
-import utils.CSVHandler;
+import tests.CSVHandler;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -175,7 +175,7 @@ public class Game {
             int attackDamage = Integer.parseInt(row.get(7));
             String ability1Name = row.get(8);
             String ability2Name = row.get(9);
-            String ability3Name = row.get(1);
+            String ability3Name = row.get(10);
 
             Champion champion;
 

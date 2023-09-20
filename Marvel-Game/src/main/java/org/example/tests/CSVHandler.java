@@ -1,19 +1,21 @@
-package utils;
+package tests;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class CSVHandler {
+  static String path = "/home/mahmoudshakour/Workspace/Marvel-Game/Marvel-Game/src/main/java/org/example/tests/";
+
   public static ArrayList<ArrayList<String>> load(String filename) {
     BufferedReader br;
     ArrayList<ArrayList<String>> dataTable = new ArrayList<>();
     try {
       br = new BufferedReader(
-          new InputStreamReader(CSVHandler.class.getResourceAsStream(filename)));
+          new FileReader(path + filename));
       while (true) {
         String line = br.readLine();
         if (line == null)
