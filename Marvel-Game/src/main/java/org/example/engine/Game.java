@@ -35,7 +35,7 @@ public class Game {
         this.secondPlayer = second;
         board = new Object[5][5];
         turnOrder = new PriorityQueue(6);
-        
+
         availableChampions.clear();
         availableAbilities.clear();
         placeCovers();
@@ -71,22 +71,24 @@ public class Game {
 
     public static void loadAbilities(String fileName) {
         availableAbilities = new ArrayList<Ability>();
-        List<String[]> loadedAbilities = CSVHandler.load(fileName);
-        for (int i = 1; i < loadedAbilities.size(); i++) {
-            String[] row = loadedAbilities.get(i);
-            String abilityType = row[0];
-            String name = row[1];
-            int manaCost = Integer.parseInt(row[2]);
-            int castRange = Integer.parseInt(row[3]);
-            int baseCooldown = Integer.parseInt(row[4]);
-            String areaOfEffect = row[5];
-            int requiredActionsPerTurn = Integer.parseInt(row[6]);
+        ArrayList<ArrayList<String>> loadedAbilities = CSVHandler.load(fileName);
+        for (int i = 0; i < loadedAbilities.size(); i++) {
+            ArrayList<String> row = loadedAbilities.get(i);
+            String abilityType = row.get(0);
+            if (abilityType.equals("Type"))
+                continue;
+            String name = row.get(1);
+            int manaCost = Integer.parseInt(row.get(2));
+            int castRange = Integer.parseInt(row.get(3));
+            int baseCooldown = Integer.parseInt(row.get(4));
+            String areaOfEffect = row.get(5);
+            int requiredActionsPerTurn = Integer.parseInt(row.get(6));
             AreaOfEffect area = AreaOfEffect.valueOf(areaOfEffect);
 
             switch (abilityType) {
                 case "CC":
-                    String effectName = row[7];
-                    int effectDuration = Integer.parseInt(row[8]);
+                    String effectName = row.get(7);
+                    int effectDuration = Integer.parseInt(row.get(8));
 
                     Effect effect;
                     switch (effectName) {
@@ -127,12 +129,12 @@ public class Game {
                             requiredActionsPerTurn, effect));
                     break;
                 case "HEL":
-                    int healAmount = Integer.parseInt(row[7]);
+                    int healAmount = Integer.parseInt(row.get(7));
                     availableAbilities.add(new HealingAbility(name, manaCost, baseCooldown, castRange, area,
                             requiredActionsPerTurn, healAmount));
                     break;
                 case "DMG":
-                    int damageAmount = Integer.parseInt(row[7]);
+                    int damageAmount = Integer.parseInt(row.get(7));
                     availableAbilities.add(new DamagingAbility(name, manaCost, baseCooldown, castRange, area,
                             requiredActionsPerTurn, damageAmount));
                     break;
@@ -154,24 +156,26 @@ public class Game {
     }
 
     public static void loadChampions(String fileName) {
-        if(availableAbilities.size()==0){
+        if (availableAbilities.size() == 0) {
             loadAbilities("Abilities.csv");
         }
         availableChampions = new ArrayList<Champion>();
-        List<String[]> loadedChampions = CSVHandler.load(fileName);
-        for (int i = 1; i < loadedChampions.size(); i++) {
-            String[] row = loadedChampions.get(i);
-            String championType = row[0];
-            String name = row[1];
-            int maxHP = Integer.parseInt(row[2]);
-            int mana = Integer.parseInt(row[3]);
-            int maxActions = Integer.parseInt(row[4]);
-            int speed = Integer.parseInt(row[5]);
-            int attackRange = Integer.parseInt(row[6]);
-            int attackDamage = Integer.parseInt(row[7]);
-            String ability1Name = row[8];
-            String ability2Name = row[9];
-            String ability3Name = row[10];
+        ArrayList<ArrayList<String>> loadedChampions = CSVHandler.load(fileName);
+        for (int i = 0; i < loadedChampions.size(); i++) {
+            ArrayList<String> row = loadedChampions.get(i);
+            String championType = row.get(0);
+            if (championType.equals("Type"))
+                continue;
+            String name = row.get(1);
+            int maxHP = Integer.parseInt(row.get(2));
+            int mana = Integer.parseInt(row.get(3));
+            int maxActions = Integer.parseInt(row.get(4));
+            int speed = Integer.parseInt(row.get(5));
+            int attackRange = Integer.parseInt(row.get(6));
+            int attackDamage = Integer.parseInt(row.get(7));
+            String ability1Name = row.get(8);
+            String ability2Name = row.get(9);
+            String ability3Name = row.get(1);
 
             Champion champion;
 

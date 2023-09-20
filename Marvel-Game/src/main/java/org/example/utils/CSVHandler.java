@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public abstract class CSVHandler {
-  public static List<String[]> load(String filename) {
+  public static ArrayList<ArrayList<String>> load(String filename) {
     BufferedReader br;
-    List<String[]> dataTable = new ArrayList<>();
+    ArrayList<ArrayList<String>> dataTable = new ArrayList<>();
     try {
       br = new BufferedReader(
           new InputStreamReader(CSVHandler.class.getResourceAsStream(filename)));
@@ -18,9 +18,9 @@ public abstract class CSVHandler {
         String line = br.readLine();
         if (line == null)
           break;
-        String[] row = line.split(",");
-        for (int j = 0; j < row.length; j++)
-          row[j] = row[j].trim();
+        ArrayList<String> row = new ArrayList<>(Arrays.asList(line.split(",")));
+        for (int j = 0; j < row.size(); j++)
+          row.get(j).trim();
         dataTable.add(row);
       }
       br.close();
@@ -30,5 +30,10 @@ public abstract class CSVHandler {
       e.printStackTrace();
     }
     return dataTable;
+  }
+
+  public static void main(String[] args) {
+    ArrayList<ArrayList<String>> arr = load("test_abilities.csv");
+    System.out.println(arr.size());
   }
 }
