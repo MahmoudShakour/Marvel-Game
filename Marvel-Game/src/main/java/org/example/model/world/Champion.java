@@ -188,14 +188,17 @@ public class Champion implements Damageable, Comparable<Champion> {
 
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Champion))
-            return false;
+    // @Override
+    // public boolean equals(Object obj) {
+    //     if (!(obj instanceof Champion))
+    //         return false;
 
-        Champion that = (Champion) obj;
-        return that.location.equals(this.location);
-    }
+    //     Champion that = (Champion) obj;
+    //     if (this.location == null && that.location == null)
+    //         return true;
+    //     if()
+    //     return that.location.equals(this.location);
+    // }
 
     protected int getDistanceFrom(Damageable target) {
         int deltaX = this.location.x - target.getLocation().x;

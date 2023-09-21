@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class CSVHandler {
-  static String path = "/home/mahmoudshakour/Workspace/Marvel-Game/Marvel-Game/src/main/java/org/example/tests/";
+  static String path = "/home/khaled/Desktop/SandBox/Marvel/Marvel-Game/src/main/java/org/example/tests/";
+  // static String path = "/home/mahmoudshakour/Workspace/Marvel-Game/Marvel-Game/src/main/java/org/example/tests/";
 
   public static ArrayList<ArrayList<String>> load(String filename) {
     BufferedReader br;

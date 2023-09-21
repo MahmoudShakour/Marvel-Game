@@ -44,11 +44,11 @@ public class Game {
 
     private void placeChampions() {
         for (int i = 0; i < firstPlayer.getTeam().size(); i++) {
-            firstPlayer.getTeam().get(i).setLocation(new Point(i + 1, 0));
+            firstPlayer.getTeam().get(i).setLocation(new Point(0, i + 1));
             board[0][i + 1] = firstPlayer.getTeam().get(i);
         }
         for (int i = 0; i < secondPlayer.getTeam().size(); i++) {
-            secondPlayer.getTeam().get(i).setLocation(new Point(i + 1, 4));
+            secondPlayer.getTeam().get(i).setLocation(new Point(4, i + 1));
             board[4][i + 1] = secondPlayer.getTeam().get(i);
         }
 
@@ -59,8 +59,8 @@ public class Game {
         board = new Object[5][5];
         int coverCount = 0;
         while (coverCount < 5) {
-            int x = random.nextInt(5);
-            int y = random.nextInt(3) + 1;
+            int x = random.nextInt(3) + 1;
+            int y = random.nextInt(5);
 
             if (!(board[x][y] instanceof Cover)) {
                 board[x][y] = new Cover(x, y);

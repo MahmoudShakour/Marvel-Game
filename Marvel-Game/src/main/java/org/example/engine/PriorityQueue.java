@@ -3,7 +3,6 @@ package engine;
 import model.world.Champion;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PriorityQueue {
     private Comparable[] elements;

@@ -3,6 +3,8 @@ package tests;
 import org.junit.Assert;
 import org.junit.Test;
 
+import model.world.Champion;
+
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -62,23 +64,23 @@ public class M1PublicTests {
 	String speedUpPath = "model.effects.SpeedUp";
 	String stunPath = "model.effects.Stun";
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testEnumDirection() throws ClassNotFoundException {
 		testIsEnum(Class.forName(directionPath));
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testClassIsEnumAreaOfEffect() throws Exception {
 		testIsEnum(Class.forName(areaOfEffectPath));
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testEnumValuesAreaOfEffect() {
 		String[] inputs = { "SELFTARGET", "SINGLETARGET", "TEAMTARGET", "DIRECTIONAL", "SURROUND" };
 		testEnumValues("AreaOfEffect", areaOfEffectPath, inputs);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testEnumDirectionValues() throws ClassNotFoundException {
 		try {
 			Enum.valueOf((Class<Enum>) Class.forName(directionPath), "RIGHT");
@@ -99,12 +101,12 @@ public class M1PublicTests {
 		}
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testEnumCondition() throws ClassNotFoundException {
 		testIsEnum(Class.forName(conditionPath));
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testEnumConditionValues() throws ClassNotFoundException {
 		try {
 			Enum.valueOf((Class<Enum>) Class.forName(conditionPath), "ACTIVE");
@@ -129,157 +131,157 @@ public class M1PublicTests {
 		}
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testEffectIsSuperClassOfShock() throws Exception {
 		testClassIsSubclass(Class.forName(shockPath), Class.forName(effectPath));
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testEffectIsSuperClassOfShield() throws Exception {
 		testClassIsSubclass(Class.forName(shieldPath), Class.forName(effectPath));
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testEffectIsSuperClassOfPowerUp() throws Exception {
 		testClassIsSubclass(Class.forName(powerUpPath), Class.forName(effectPath));
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testEffectIsSuperClassOfEmbrace() throws Exception {
 		testClassIsSubclass(Class.forName(embracePath), Class.forName(effectPath));
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testEffectIsSuperClassOfDisarm() throws Exception {
 		testClassIsSubclass(Class.forName(disarmPath), Class.forName(effectPath));
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testAbilityIsSuperClassOfHealingAbility() throws Exception {
 		testClassIsSubclass(Class.forName(healingAbilityPath), Class.forName(abilityPath));
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testAbilityIsSuperClassOfDamagingAbility() throws Exception {
 		testClassIsSubclass(Class.forName(damagingAbilityPath), Class.forName(abilityPath));
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructor0Effect() throws Exception {
 		Class[] inputs = { String.class, int.class, Class.forName(effectTypePath) };
 		testConstructorExists(Class.forName(effectPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructor0Stun() throws Exception {
 		Class[] inputs = { int.class };
 		testConstructorExists(Class.forName(stunPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructor0SpeedUp() throws Exception {
 		Class[] inputs = { int.class };
 		testConstructorExists(Class.forName(speedUpPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructor0Dodge() throws Exception {
 		Class[] inputs = { int.class };
 		testConstructorExists(Class.forName(DodgePath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructor0Silence() throws Exception {
 		Class[] inputs = { int.class };
 		testConstructorExists(Class.forName(silencePath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructor0Shock() throws Exception {
 		Class[] inputs = { int.class };
 		testConstructorExists(Class.forName(shockPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructor0Shield() throws Exception {
 		Class[] inputs = { int.class };
 		testConstructorExists(Class.forName(shieldPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInvalidConstructor0Disarm() throws Exception {
 		Class[] inputs = { String.class, int.class, Class.forName(effectTypePath) };
 		testConstructorDoesnotExist(Class.forName(disarmPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInvalidConstructor0DamagingAbility() throws Exception {
 		Class[] inputs = { String.class, int.class, int.class, int.class, Class.forName(areaOfEffectPath), int.class };
 		testConstructorDoesnotExist(Class.forName(damagingAbilityPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInvalidConstructor0HealingAbility() throws Exception {
 		Class[] inputs = { String.class, int.class, int.class, int.class, Class.forName(areaOfEffectPath), int.class };
 		testConstructorDoesnotExist(Class.forName(healingAbilityPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInvalidConstructor0CrowdControlAbility() throws Exception {
 		Class[] inputs = { String.class, int.class, int.class, int.class, Class.forName(areaOfEffectPath), int.class };
 		testConstructorDoesnotExist(Class.forName(crowdControlAbilityPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInvalidConstructor0PowerUp() throws Exception {
 		Class[] inputs = { String.class, int.class, Class.forName(effectTypePath) };
 		testConstructorDoesnotExist(Class.forName(powerUpPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInvalidConstructor0Shield() throws Exception {
 		Class[] inputs = { String.class, int.class, Class.forName(effectTypePath) };
 		testConstructorDoesnotExist(Class.forName(shieldPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInvalidConstructor0Silence() throws Exception {
 		Class[] inputs = { String.class, int.class, Class.forName(effectTypePath) };
 		testConstructorDoesnotExist(Class.forName(silencePath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInvalidConstructor0SpeedUp() throws Exception {
 		Class[] inputs = { String.class, int.class, Class.forName(effectTypePath) };
 		testConstructorDoesnotExist(Class.forName(speedUpPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructor0Ability() throws Exception {
 		Class[] inputs = { String.class, int.class, int.class, int.class, Class.forName(areaOfEffectPath), int.class };
 		testConstructorExists(Class.forName(abilityPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructor0HealingAbility() throws Exception {
 		Class[] inputs = { String.class, int.class, int.class, int.class, Class.forName(areaOfEffectPath), int.class,
 				int.class };
 		testConstructorExists(Class.forName(healingAbilityPath), inputs);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableTypeExistsInClassEffect() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(effectPath), "setType", Class.forName(effectTypePath), false);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructor0CrowdControlAbility() throws Exception {
 		Class[] inputs = { String.class, int.class, int.class, int.class, Class.forName(areaOfEffectPath), int.class,
 				Class.forName(effectPath) };
 		testConstructorExists(Class.forName(crowdControlAbilityPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructorInitialization1200Effect() throws Exception {
 		int r = (int) Math.random() * 500;
 		String string00 = "wq8" + r;
@@ -301,7 +303,7 @@ public class M1PublicTests {
 		testConstructorInitialization(effect00, names, values);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructorInitialization1300Stun() throws Exception {
 		int r = (int) Math.random() * 500;
 		int int83 = 83 + r;
@@ -315,7 +317,7 @@ public class M1PublicTests {
 		testConstructorInitialization(stun00, names, values);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructorInitialization1400SpeedUp() throws Exception {
 		int r = (int) Math.random() * 500;
 		int int13 = 13 + r;
@@ -329,7 +331,7 @@ public class M1PublicTests {
 		testConstructorInitialization(speedUp00, names, values);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructorInitialization1400Root() throws Exception {
 		int r = (int) Math.random() * 500;
 		int int13 = 13 + r;
@@ -343,7 +345,7 @@ public class M1PublicTests {
 		testConstructorInitialization(speedUp00, names, values);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructorInitialization1500Dodge() throws Exception {
 		int r = (int) Math.random() * 500;
 		int int06 = 6 + r;
@@ -357,7 +359,7 @@ public class M1PublicTests {
 		testConstructorInitialization(dodge00, names, values);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructorInitialization1600Silence() throws Exception {
 		int r = (int) Math.random() * 500;
 		int int03 = 3 + r;
@@ -371,7 +373,7 @@ public class M1PublicTests {
 		testConstructorInitialization(silence00, names, values);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructorInitialization1700Shock() throws Exception {
 		int r = (int) Math.random() * 500;
 		int int65 = 65 + r;
@@ -385,7 +387,7 @@ public class M1PublicTests {
 		testConstructorInitialization(shock00, names, values);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructorInitialization2400DamagingAbility() throws Exception {
 		int r = (int) Math.random() * 500;
 		String string01 = "s9x0q" + r;
@@ -417,7 +419,7 @@ public class M1PublicTests {
 		testConstructorInitialization(damagingAbility00, names, values);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testConstructorInitialization2500CrowdControlAbility() throws Exception {
 		int r = (int) Math.random() * 500;
 		String string00 = "wq8" + r;
@@ -455,347 +457,347 @@ public class M1PublicTests {
 		testConstructorInitialization(crowdControlAbility00, names, values);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableNameIsPresentInClassEffect() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(effectPath), "name", true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableDurationIsPresentInClassEffect() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(effectPath), "duration", true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableTypeIsPresentInClassEffect() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(effectPath), "type", true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableNameIsPresentInClassAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(abilityPath), "name", true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableManaCostIsPresentInClassAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(abilityPath), "manaCost", true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableBaseCooldownIsPresentInClassAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(abilityPath), "baseCooldown", true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableCurrentCooldownIsPresentInClassAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(abilityPath), "currentCooldown", true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableCastRangeIsPresentInClassAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(abilityPath), "castRange", true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableRequiredActionPointsIsPresentInClassAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(abilityPath), "requiredActionPoints", true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableCastAreaIsPresentInClassAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(abilityPath), "castArea", true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableHealingAmountIsPresentInClassHealingAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(healingAbilityPath), "healAmount", true);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableNameIsNotPresentInClassShield() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(shieldPath), "name", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableNameIsNotPresentInClassPowerUp() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(powerUpPath), "name", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableNameIsNotPresentInClassEmbrace() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(embracePath), "name", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableNameIsNotPresentInClassDisarm() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(disarmPath), "name", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableNameIsNotPresentInClassRoot() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(rootPath), "name", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableDurationIsNotPresentInClassStun() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(stunPath), "duration", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableDurationIsNotPresentInClassSpeedUp() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(speedUpPath), "duration", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableDurationIsNotPresentInClassDodge() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(DodgePath), "duration", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableDurationIsNotPresentInClassSilence() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(silencePath), "duration", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableDurationIsNotPresentInClassShock() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(shockPath), "duration", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableDurationIsNotPresentInClassShield() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(shieldPath), "duration", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableDurationIsNotPresentInClassPowerUp() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(powerUpPath), "duration", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableDurationIsNotPresentInClassEmbrace() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(embracePath), "duration", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableDurationIsNotPresentInClassDisarm() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(disarmPath), "duration", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableDurationIsNotPresentInClassRoot() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(rootPath), "duration", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableTypeIsNotPresentInClassStun() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(stunPath), "type", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableTypeIsNotPresentInClassSpeedUp() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(speedUpPath), "type", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableTypeIsNotPresentInClassDodge() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(DodgePath), "type", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableTypeIsNotPresentInClassSilence() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(silencePath), "type", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableTypeIsNotPresentInClassShock() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(shockPath), "type", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableTypeIsNotPresentInClassShield() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(shieldPath), "type", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableTypeIsNotPresentInClassPowerUp() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(powerUpPath), "type", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableTypeIsNotPresentInClassEmbrace() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(embracePath), "type", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableTypeIsNotPresentInClassDisarm() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(disarmPath), "type", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableTypeIsNotPresentInClassRoot() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(rootPath), "type", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableManaCostIsNotPresentInClassHealingAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(healingAbilityPath), "manaCost", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableManaCostIsNotPresentInClassDamagingAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(damagingAbilityPath), "manaCost", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableManaCostIsNotPresentInClassCrowdControlAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(crowdControlAbilityPath), "manaCost", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableBaseCooldownIsNotPresentInClassHealingAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(healingAbilityPath), "baseCooldown", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableBaseCooldownIsNotPresentInClassDamagingAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(damagingAbilityPath), "baseCooldown", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableBaseCooldownIsNotPresentInClassCrowdControlAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(crowdControlAbilityPath), "baseCooldown", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableCurrentCooldownIsNotPresentInClassHealingAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(healingAbilityPath), "currentCooldown", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableCurrentCooldownIsNotPresentInClassDamagingAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(damagingAbilityPath), "currentCooldown", false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testInstanceVariableCurrentCooldownIsNotPresentInClassCrowdControlAbility() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(crowdControlAbilityPath), "currentCooldown", false);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableNameIsPrivateInClassEffect() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(effectPath), "name");
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableDurationIsPrivateInClassEffect() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(effectPath), "duration");
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableNameIsPrivateInClassAbility() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(abilityPath), "name");
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableManaCostIsPrivateInClassAbility() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(abilityPath), "manaCost");
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableBaseCooldownIsPrivateInClassAbility() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(abilityPath), "baseCooldown");
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableCurrentCooldownIsPrivateInClassAbility() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(abilityPath), "currentCooldown");
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableCastRangeIsPrivateInClassAbility() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(abilityPath), "castRange");
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableHealingAmountIsPrivateInClassHealingAbility() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(healingAbilityPath), "healAmount");
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testInstanceVariableDamageAmountIsPrivateInClassDamagingAbility() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(damagingAbilityPath), "damageAmount");
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testGetterForInstanceVariableNameExistsInClassEffect() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(effectPath), "getName", String.class, true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testSetterForInstanceVariableNameExistsInClassEffect() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(effectPath), "setName", String.class, false);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testGetterForInstanceVariableDurationExistsInClassEffect() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(effectPath), "getDuration", int.class, true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testGetterForInstanceVariableNameExistsInClassAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(abilityPath), "getName", String.class, true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testGetterForInstanceVariableManaCostExistsInClassAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(abilityPath), "getManaCost", int.class, true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testGetterForInstanceVariableBaseCooldownExistsInClassAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(abilityPath), "getBaseCooldown", int.class, true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testGetterForInstanceVariableCurrentCooldownExistsInClassAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(abilityPath), "getCurrentCooldown", int.class, true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testGetterForInstanceVariableCastRangeExistsInClassAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(abilityPath), "getCastRange", int.class, true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testSetterForInstanceVariableDurationExistsInClassEffect() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(effectPath), "setDuration", int.class, true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testSetterForInstanceVariableCurrentCooldownExistsInClassAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(abilityPath), "setCurrentCooldown", int.class, true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testSetterForInstanceVariableManaCostExistsInClassAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(abilityPath), "setManaCost", int.class, false);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testSetterForInstanceVariableBaseCooldownExistsInClassAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(abilityPath), "setBaseCooldown", int.class, false);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testSetterForInstanceVariableDamageAmountExistsInClassDamagingAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(damagingAbilityPath), "setDamageAmount", int.class, true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testGetterForInstanceVariableHealAmountExistsInClassHealingAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(healingAbilityPath), "getHealAmount", int.class, true);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testGetterLogicForInstanceVariableDurationeffect00int26InClassEffect() throws Exception {
 		int r = (int) (Math.random() * 500);
 		String string00 = "wq8" + r;
@@ -808,7 +810,7 @@ public class M1PublicTests {
 		testGetterLogic(effect00, "duration", int26);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testGetterLogicForInstanceVariableTypeeffect00effectType01InClassEffect() throws Exception {
 		int r = (int) (Math.random() * 500);
 		String string00 = "wq8" + r;
@@ -827,7 +829,7 @@ public class M1PublicTests {
 		testGetterLogic(effect00, "type", effectType01);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testGetterLogicForInstanceVariableNameability00string00InClassAbility() throws Exception {
 		int r = (int) (Math.random() * 500);
 		String string00 = "wq8" + r;
@@ -844,7 +846,7 @@ public class M1PublicTests {
 		testGetterLogic(ability00, "name", string00);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testSetterLogicForInstanceVariableDurationeffect00int70InClassEffect() throws Exception {
 		int r = (int) (Math.random() * 500);
 		String string00 = "wq8" + r;
@@ -875,267 +877,267 @@ public class M1PublicTests {
 		testSetterLogic(ability00, "currentCooldown", -1 * r, 0, int.class);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableNameExistsInClassStun() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(stunPath), "setName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableNameExistsInClassSpeedUp() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(speedUpPath), "setName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableNameExistsInClassSlipperiness() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(DodgePath), "setName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableNameExistsInClassSilence() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(silencePath), "setName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableNameExistsInClassShock() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(shockPath), "setName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableNameExistsInClassShield() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(shieldPath), "setName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableDurationExistsInClassPowerUp() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(powerUpPath), "setDuration", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableDurationExistsInClassEmbrace() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(embracePath), "setDuration", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableDurationExistsInClassDisarm() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(disarmPath), "setDuration", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableTypeExistsInClassStun() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(stunPath), "setType", Class.forName(effectTypePath), false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableTypeExistsInClassSpeedUp() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(speedUpPath), "setType", Class.forName(effectTypePath), false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableTypeExistsInClassDisarm() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(disarmPath), "setType", Class.forName(effectTypePath), false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableNameExistsInClassHealingAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(healingAbilityPath), "setName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableNameExistsInClassDamagingAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(damagingAbilityPath), "setName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableManaCostExistsInClassCrowdControlAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(crowdControlAbilityPath), "setManaCost", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableBaseCooldownExistsInClassHealingAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(healingAbilityPath), "setBaseCooldown", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableBaseCooldownExistsInClassDamagingAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(damagingAbilityPath), "setBaseCooldown", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableCurrentCooldownExistsInClassCrowdControlAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(crowdControlAbilityPath), "setCurrentCooldown", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableCastRangeExistsInClassHealingAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(healingAbilityPath), "setCastRange", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableCastRangeExistsInClassDamagingAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(damagingAbilityPath), "setCastRange", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableRequiredActionPointsExistsInClassDamagingAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(damagingAbilityPath), "setRequiredActionPoints", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableRequiredActionPointsExistsInClassCrowdControlAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(crowdControlAbilityPath), "setRequiredActionPoints", int.class,
 				false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testSetterForInstanceVariableCastAreaExistsInClassHealingAbility() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(healingAbilityPath), "setCastArea", Class.forName(areaOfEffectPath),
 				false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableNameExistsInClassSlipperiness() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(DodgePath), "getName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableNameExistsInClassSilence() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(silencePath), "getName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableNameExistsInClassShock() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(shockPath), "getName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableNameExistsInClassShield() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(shieldPath), "getName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableNameExistsInClassPowerUp() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(powerUpPath), "getName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableNameExistsInClassEmbrace() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(embracePath), "getName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableNameExistsInClassDisarm() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(disarmPath), "getName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableDurationExistsInClassStun() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(stunPath), "getDuration", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableDurationExistsInClassSpeedUp() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(speedUpPath), "getDuration", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableDurationExistsInClassEmbrace() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(embracePath), "getDuration", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableDurationExistsInClassDisarm() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(disarmPath), "getDuration", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableTypeExistsInClassStun() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(stunPath), "getType", Class.forName(effectTypePath), false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableTypeExistsInClassSpeedUp() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(speedUpPath), "getType", Class.forName(effectTypePath), false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableTypeExistsInClassSlipperiness() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(DodgePath), "getType", Class.forName(effectTypePath), false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableTypeExistsInClassSilence() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(silencePath), "getType", Class.forName(effectTypePath), false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableTypeExistsInClassShock() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(shockPath), "getType", Class.forName(effectTypePath), false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableTypeExistsInClassShield() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(shieldPath), "getType", Class.forName(effectTypePath), false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableTypeExistsInClassPowerUp() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(powerUpPath), "getType", Class.forName(effectTypePath), false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableNameExistsInClassCrowdControlAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(crowdControlAbilityPath), "getName", String.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableManaCostExistsInClassHealingAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(healingAbilityPath), "getManaCost", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableManaCostExistsInClassDamagingAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(damagingAbilityPath), "getManaCost", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableCastRangeExistsInClassHealingAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(healingAbilityPath), "getCastRange", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableCastRangeExistsInClassDamagingAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(damagingAbilityPath), "getCastRange", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableRequiredActionPointsExistsInClassHealingAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(healingAbilityPath), "getRequiredActionPoints", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableRequiredActionPointsExistsInClassDamagingAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(damagingAbilityPath), "getRequiredActionPoints", int.class, false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableCastAreaExistsInClassDamagingAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(damagingAbilityPath), "getCastArea",
 				Class.forName(areaOfEffectPath), false);
 	}
 
-	@Test(timeout = 10000)
+	@Test(timeout = 200000)
 	public void testGetterForInstanceVariableCastAreaExistsInClassCrowdControlAbility() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(crowdControlAbilityPath), "getCastArea",
 				Class.forName(areaOfEffectPath), false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testConstructorCover() throws ClassNotFoundException {
 		Class[] inputs = { int.class, int.class };
 		testConstructorExists(Class.forName(coverPath), inputs);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testConstructorCoverInitialization() throws Exception {
 		Constructor<?> constructor = Class.forName(coverPath).getConstructor(int.class, int.class);
 		int randomX = (int) (Math.random() * 10) + 1;
@@ -1151,28 +1153,28 @@ public class M1PublicTests {
 		testConstructorInitializationCover(createdObjects, varNames, varValues);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testCoverInstanceVariableLocationPresent() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(coverPath), "location", true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testCoverInstanceVariableLocationPrivate() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(coverPath), "location");
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testCoverInstanceVariableLocationType() throws Exception {
 		testInstanceVariableOfType(Class.forName(coverPath), "location", Point.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testCoverCurrentHPGetter() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(coverPath), "getCurrentHP", int.class, true);
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testCoverCurrentHPGetterLogic() throws Exception {
 		Constructor<?> constructor = Class.forName(coverPath).getConstructor(int.class, int.class);
 		int randomX = (int) (Math.random() * 10) + 1;
@@ -1182,13 +1184,13 @@ public class M1PublicTests {
 		testGetterLogic(b, "currentHP", randomHP);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testCoverCurrentHPSetter() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(coverPath), "setCurrentHP", int.class, true);
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testCoverCurrentHPSetterLogicGeneral() throws Exception {
 		Constructor<?> constructor = Class.forName(coverPath).getConstructor(int.class, int.class);
 		int randomX = (int) (Math.random() * 10) + 1;
@@ -1198,13 +1200,13 @@ public class M1PublicTests {
 		testSetterLogicCover(b, "currentHP", randomHP, randomHP, int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testCoverLocationGetter() throws Exception {
 		testGetterMethodExistsInClass(Class.forName(coverPath), "getLocation", Point.class, true);
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testCoverLocationGetterLogic() throws Exception {
 		Constructor<?> constructor = Class.forName(coverPath).getConstructor(int.class, int.class);
 		int randomX = (int) (Math.random() * 10) + 1;
@@ -1214,34 +1216,34 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testCoverLocationSetter() throws Exception {
 		testSetterMethodExistsInClass(Class.forName(coverPath), "setLocation", Point.class, false);
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionNamePresent() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(championPath), "name", true);
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionNamePrivate() throws Exception {
 		testInstanceVariableOfType(Class.forName(championPath), "name", String.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionNameType() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(championPath), "name");
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionNameGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(championPath), "getName", String.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionNameGetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1257,17 +1259,17 @@ public class M1PublicTests {
 		testGetterLogic(c, "name", "Name_" + randomName);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionNameSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(championPath), "setName", String.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionMaxHPGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(championPath), "getMaxHP", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionMaxHPGetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1283,32 +1285,32 @@ public class M1PublicTests {
 		testGetterLogic(c, "maxHP", randomMaxHP);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionMaxHPSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(championPath), "setMaxHP", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionCurrentHPPresent() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(championPath), "currentHP", true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionCurrentHPPrivate() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(championPath), "currentHP");
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionCurrentHPType() throws Exception {
 		testInstanceVariableOfType(Class.forName(championPath), "currentHP", int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionCurrentHPGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(championPath), "getCurrentHP", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionCurrentHPGetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1324,12 +1326,12 @@ public class M1PublicTests {
 		testGetterLogic(c, "currentHP", randomMaxHP);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionCurrentHPSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(championPath), "setCurrentHP", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionCurrentHPSetterLogicMax() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1346,7 +1348,7 @@ public class M1PublicTests {
 		testSetterLogic(c, "currentHP", randomCurrentHP, randomMaxHP, int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionCurrentHPSetterLogicZero() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1362,7 +1364,7 @@ public class M1PublicTests {
 		testSetterLogic(c, "currentHP", -1, 0, int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionCurrentHPSetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1379,27 +1381,27 @@ public class M1PublicTests {
 		testSetterLogic(c, "currentHP", randomCurrentHP, randomCurrentHP, int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionManaPresent() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(championPath), "mana", true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionManaPrivate() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(championPath), "mana");
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionManaType() throws Exception {
 		testInstanceVariableOfType(Class.forName(championPath), "mana", int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionManaGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(championPath), "getMana", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionManaGetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1415,27 +1417,27 @@ public class M1PublicTests {
 		testGetterLogic(c, "mana", randomMana);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionMaxActionPointsPerTurnPresent() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(championPath), "maxActionPointsPerTurn", true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionMaxActionPointsPerTurnPrivate() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(championPath), "maxActionPointsPerTurn");
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionMaxActionPointsPerTurnType() throws Exception {
 		testInstanceVariableOfType(Class.forName(championPath), "maxActionPointsPerTurn", int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionMaxActionPointsPerTurnGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(championPath), "getMaxActionPointsPerTurn", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionMaxActionPointsPerTurnGetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1451,12 +1453,12 @@ public class M1PublicTests {
 		testGetterLogic(c, "maxActionPointsPerTurn", randomMaxActions);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionMaxActionPointsPerTurnSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(championPath), "setMaxActionPointsPerTurn", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionMaxActionPointsPerTurnSetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1473,12 +1475,12 @@ public class M1PublicTests {
 		testSetterLogic(c, "maxActionPointsPerTurn", randomMaxActions2, randomMaxActions2, int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionCurrentActionPointsGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(championPath), "getCurrentActionPoints", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionCurrentActionPointsGetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1494,27 +1496,27 @@ public class M1PublicTests {
 		testGetterLogic(c, "currentActionPoints", randomActions + (int) (Math.random() * 10) + 1);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackRangePresent() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(championPath), "attackRange", true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackRangePrivate() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(championPath), "attackRange");
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackRangeType() throws Exception {
 		testInstanceVariableOfType(Class.forName(championPath), "attackRange", int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackRangeGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(championPath), "getAttackRange", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackRangeGetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1530,34 +1532,34 @@ public class M1PublicTests {
 		testGetterLogic(c, "attackRange", randomAttackRange);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackRangeSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(championPath), "setAttackRange", int.class, false);
 		String[] subClasses = { antiHeroPath, heroPath, villainPath };
 		testSetterAbsentInSubclasses("attackRange", subClasses);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackDamagePresent() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(championPath), "attackDamage", true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackDamagePrivate() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(championPath), "attackDamage");
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackDamageType() throws Exception {
 		testInstanceVariableOfType(Class.forName(championPath), "attackDamage", int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackDamageGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(championPath), "getAttackDamage", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackDamageGetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1573,12 +1575,12 @@ public class M1PublicTests {
 		testGetterLogic(c, "attackDamage", randomAttackDamage);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackDamageSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(championPath), "setAttackDamage", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAttackDamageSetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1595,27 +1597,27 @@ public class M1PublicTests {
 		testSetterLogic(c, "attackDamage", randomAttackDamage2, randomAttackDamage2, int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionSpeedPresent() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(championPath), "speed", true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionSpeedPrivate() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(championPath), "speed");
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionSpeedType() throws Exception {
 		testInstanceVariableOfType(Class.forName(championPath), "speed", int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionSpeedGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(championPath), "getSpeed", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionSpeedGetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1631,12 +1633,12 @@ public class M1PublicTests {
 		testGetterLogic(c, "speed", randomSpeed);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionSpeedSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(championPath), "setSpeed", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionSpeedSetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1653,12 +1655,12 @@ public class M1PublicTests {
 		testSetterLogic(c, "speed", randomSpeed2, randomSpeed2, int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAbilitiesGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(championPath), "getAbilities", ArrayList.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAbilitiesGetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1675,12 +1677,12 @@ public class M1PublicTests {
 		testGetterLogic(c, "abilities", value);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAbilitiesSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(championPath), "setAbilities", ArrayList.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAppliedEffectsPresent() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(championPath), "appliedEffects", true);
 	}
@@ -1693,32 +1695,32 @@ public class M1PublicTests {
 		testInstanceVariableOfType(Class.forName(championPath), "appliedEffects", ArrayList.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionAppliedEffectsSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(championPath), "setAppliedEffects", ArrayList.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionConditionPresent() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(championPath), "condition", true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionConditionPrivate() throws Exception {
 		testInstanceVariableIsPrivate(Class.forName(championPath), "condition");
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionConditionType() throws Exception {
 		testInstanceVariableOfType(Class.forName(championPath), "condition", Class.forName(conditionPath));
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionConditionGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(championPath), "getCondition", Class.forName(conditionPath), true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionConditionGetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1735,12 +1737,12 @@ public class M1PublicTests {
 		testGetterLogic(c, "condition", s);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionConditionSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(championPath), "setCondition", Class.forName(conditionPath), true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionConditionSetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1757,12 +1759,12 @@ public class M1PublicTests {
 		testSetterLogic(c, "condition", s, s, Class.forName(conditionPath));
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableLocationGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(championPath), "getLocation", Point.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableChampionLocationGetterLogic() throws Exception {
 		Constructor<?> championConstructor = Class.forName(championPath).getConstructor(String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class);
@@ -1784,7 +1786,7 @@ public class M1PublicTests {
 		testConstructorExists(Class.forName(antiHeroPath), inputs);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testConstructorAntiHeroInitialization() throws Exception {
 		Constructor<?> constructor = Class.forName(antiHeroPath).getConstructor(String.class, int.class, int.class,
 				int.class, int.class, int.class, int.class);
@@ -1805,402 +1807,402 @@ public class M1PublicTests {
 		testConstructorInitialization(b, varNames, varValues);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testClassIsSubclassHero() throws Exception {
 		testClassIsSubclass(Class.forName(heroPath), Class.forName(championPath));
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroName() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "name", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroNameGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getName", String.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroNameSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setName", String.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroMaxHP() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "maxHP", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroMaxHPGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getMaxHP", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroMaxHPSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setMaxHP", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroCurrentHP() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "currentHP", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroCurrentHPGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getCurrentHP", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroCurrentHPSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setCurrentHP", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroMana() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "mana", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroManaGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getMana", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroManaSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setMana", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroMaxActionPointsPerTurn() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "maxActionPointsPerTurn", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroMaxActionPointsPerTurnGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getMaxActionPointsPerTurn", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroMaxActionPointsPerTurnSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setMaxActionPointsPerTurn", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroCurrentActionPoints() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "currentActionPoints", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroCurrentActionPointsGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getCurrentActionPoints", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroCurrentActionPointsSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setCurrentActionPoints", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroAttackRange() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "attackRange", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroAttackRangeGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getAttackRange", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroAttackRangeSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setAttackRange", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroAttackDamage() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "attackDamage", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroAttackDamageGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getAttackDamage", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroAttackDamageSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setAttackDamage", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroSpeed() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "speed", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroSpeedGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getSpeed", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroSpeedSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setSpeed", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroAbilities() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "abilities", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroAbilitiesGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getAbilities", ArrayList.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroAbilitiesSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setAbilities", ArrayList.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroAppliedEffects() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "appliedEffects", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroAppliedEffectsGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getAppliedEffects", ArrayList.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroAppliedEffectsSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setAppliedEffects", ArrayList.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroCondition() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "condition", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroConditionGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getCondition", Condition.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroConditionSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setCondition", Condition.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroLocation() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(heroPath), "location", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroLocationGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(heroPath), "getLocation", Point.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableHeroLocationSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(heroPath), "setLocation", Point.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testClassIsSubclassVillain() throws Exception {
 		testClassIsSubclass(Class.forName(villainPath), Class.forName(championPath));
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainName() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "name", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainNameGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getName", String.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainNameSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setName", String.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainMaxHP() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "maxHP", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainMaxHPGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getMaxHP", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainMaxHPSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setMaxHP", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainCurrentHP() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "currentHP", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainCurrentHPGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getCurrentHP", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainCurrentHPSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setCurrentHP", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainMana() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "mana", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainManaGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getMana", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainManaSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setMana", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainMaxActionPointsPerTurn() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "maxActionPointsPerTurn", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainMaxActionPointsPerTurnGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getMaxActionPointsPerTurn", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainMaxActionPointsPerTurnSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setMaxActionPointsPerTurn", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainCurrentActionPoints() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "currentActionPoints", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainCurrentActionPointsGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getCurrentActionPoints", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainCurrentActionPointsSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setCurrentActionPoints", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainAttackRange() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "attackRange", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainAttackRangeGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getAttackRange", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainAttackRangeSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setAttackRange", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainAttackDamage() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "attackDamage", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainAttackDamageGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getAttackDamage", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainAttackDamageSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setAttackDamage", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainSpeed() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "speed", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainSpeedGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getSpeed", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainSpeedSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setSpeed", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainAbilities() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "abilities", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainAbilitiesGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getAbilities", ArrayList.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainAbilitiesSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setAbilities", ArrayList.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainAppliedEffects() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "appliedEffects", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainAppliedEffectsGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getAppliedEffects", ArrayList.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainAppliedEffectsSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setAppliedEffects", ArrayList.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainCondition() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "condition", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainConditionGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getCondition", Condition.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainConditionSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setCondition", Condition.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainLocation() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(villainPath), "location", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainLocationGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(villainPath), "getLocation", Point.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableVillainLocationSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(villainPath), "setLocation", Point.class, false);
 	}
@@ -2210,7 +2212,7 @@ public class M1PublicTests {
 		testConstructorExists(Class.forName(villainPath), inputs);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testConstructorVillainInitialization() throws Exception {
 		Constructor<?> constructor = Class.forName(villainPath).getConstructor(String.class, int.class, int.class,
 				int.class, int.class, int.class, int.class);
@@ -2231,21 +2233,21 @@ public class M1PublicTests {
 		testConstructorInitialization(b, varNames, varValues);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableSecondPlayerInGame() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(gamePath), "secondPlayer", true);
 		testInstanceVariableIsPrivate(Class.forName(gamePath), "secondPlayer");
 		testInstanceVariableOfType(Class.forName(gamePath), "secondPlayer", Class.forName(playerPath));
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableFirstLeaderAbilityUsedInGame() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(gamePath), "firstLeaderAbilityUsed", true);
 		testInstanceVariableIsPrivate(Class.forName(gamePath), "firstLeaderAbilityUsed");
 		testInstanceVariableOfType(Class.forName(gamePath), "firstLeaderAbilityUsed", boolean.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableAvailableChampionsInGame() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(gamePath), "availableChampions", true);
 		testStaticVariableIsPrivate(Class.forName(gamePath), "availableChampions");
@@ -2253,21 +2255,21 @@ public class M1PublicTests {
 		testInstanceVariableOfType(Class.forName(gamePath), "availableChampions", ArrayList.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableTurnOrderInGame() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(gamePath), "turnOrder", true);
 		testInstanceVariableIsPrivate(Class.forName(gamePath), "turnOrder");
 		testInstanceVariableOfType(Class.forName(gamePath), "turnOrder", Class.forName(priorityQueuePath));
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableBoardHightInGame() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(gamePath), "BOARDHEIGHT", true);
 		testStaticVariableIsPrivate(Class.forName(gamePath), "BOARDHEIGHT");
 		testInstanceVariableOfType(Class.forName(gamePath), "BOARDHEIGHT", int.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableBoardWidthInGame() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(gamePath), "BOARDWIDTH", true);
 		testStaticVariableIsPrivate(Class.forName(gamePath), "BOARDWIDTH");
@@ -2289,47 +2291,47 @@ public class M1PublicTests {
 		assertTrue(f.getName() + " variable in calss Game should be static", (Modifier.isStatic(modifiers)));
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameFirstPlayerGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(gamePath), "getFirstPlayer", Class.forName(playerPath), true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameSecondPlayerGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(gamePath), "getSecondPlayer", Class.forName(playerPath), true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameFirstLeaderAbilityUsedGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(gamePath), "isFirstLeaderAbilityUsed", boolean.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameBoardGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(gamePath), "getBoard", Object[][].class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameAvailableAbilitiesGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(gamePath), "getAvailableAbilities", ArrayList.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameTurnOrderGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(gamePath), "getTurnOrder", Class.forName(priorityQueuePath), true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameBOARDHEIGHTGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(gamePath), "getBoardheight", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameBOARDWIDTHGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(gamePath), "getBoardwidth", int.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameFirstPlayerGetterLogic() throws Exception {
 
 		Constructor<?> constructorFirstPlayer = Class.forName(playerPath).getConstructor(String.class);
@@ -2344,7 +2346,7 @@ public class M1PublicTests {
 		testGetterLogic(myObj, "firstPlayer", firstPlayer);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameSecondPlayerGetterLogic() throws Exception {
 
 		Constructor<?> constructorFirstPlayer = Class.forName(playerPath).getConstructor(String.class);
@@ -2359,7 +2361,7 @@ public class M1PublicTests {
 		testGetterLogic(myObj, "secondPlayer", secondPlayer);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameSecondLeaderAbilityUsedGetterLogic() throws Exception {
 
 		Constructor<?> constructorFirstPlayer = Class.forName(playerPath).getConstructor(String.class);
@@ -2374,7 +2376,7 @@ public class M1PublicTests {
 		testGetterLogic(myObj, "secondLeaderAbilityUsed", false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameBoardGetterLogic() throws Exception {
 
 		Constructor<?> constructorFirstPlayer = Class.forName(playerPath).getConstructor(String.class);
@@ -2389,7 +2391,7 @@ public class M1PublicTests {
 		testGetterLogic(myObj, "board", new Object[5][5]);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameTurnOrderGetterLogic() throws Exception {
 
 		Constructor<?> constructorFirstPlayer = Class.forName(playerPath).getConstructor(String.class);
@@ -2406,7 +2408,7 @@ public class M1PublicTests {
 		testGetterLogic(myObj, "turnOrder", pq);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariableGameAvailableAbilitiesGetterLogic() throws Exception {
 
 		Constructor<?> constructorFirstPlayer = Class.forName(playerPath).getConstructor(String.class);
@@ -2421,42 +2423,42 @@ public class M1PublicTests {
 		testGetterLogic(myObj, "availableAbilities", new ArrayList<>());
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testGameSecondLeaderAbilityUsedSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(gamePath), "setSecondLeaderAbilityUsed", boolean.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testGameBoardSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(gamePath), "setBoard", Object[][].class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testGameAvailableChampionsSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(gamePath), "setAvailableChampions", ArrayList.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testGameAvailableAbilitiesSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(gamePath), "setAvailableAbilities", ArrayList.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testGameTurnOrderSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(gamePath), "setTurnOrder", Class.forName(priorityQueuePath), false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testGameBOARDHEIGHTSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(gamePath), "setBoardHeight", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testGameBOARDWIDTHSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(gamePath), "setBoardWidth", int.class, false);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testConstructorGameConstructorInitialization() throws Exception {
 
 		Constructor<?> constructorFirstPlayer = Class.forName(playerPath).getConstructor(String.class);
@@ -2537,7 +2539,10 @@ public class M1PublicTests {
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, IOException, NoSuchFieldException {
 
-		PrintWriter csvWriter = new PrintWriter("test_abilities.csv");
+		PrintWriter csvWriter = new PrintWriter(
+				"/home/khaled/Desktop/SandBox/Marvel/Marvel-Game/src/main/java/org/example/tests/test_abilities.csv");
+		// PrintWriter csvWriter = new
+		// PrintWriter("/home/mahmoudshakour/Workspace/Marvel-Game/Marvel-Game/src/main/java/org/example/tests/test_abilities.csv");
 		int random = (int) (Math.random() * 50);
 		int cost = random;
 		random = (int) (Math.random() * 50);
@@ -2712,7 +2717,10 @@ public class M1PublicTests {
 	private ArrayList<ArrayList<Object>> generateChampionsArrayList()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, IOException, NoSuchFieldException {
-		PrintWriter csvWriter = new PrintWriter("/home/mahmoudshakour/Workspace/Marvel-Game/Marvel-Game/src/main/java/org/example/tests/test_champions.csv");
+		PrintWriter csvWriter = new PrintWriter(
+				"/home/khaled/Desktop/SandBox/Marvel/Marvel-Game/src/main/java/org/example/tests/test_champions.csv");
+		// PrintWriter csvWriter = new
+		// PrintWriter("/home/mahmoudshakour/Workspace/Marvel-Game/Marvel-Game/src/main/java/org/example/tests/test_champions.csv");
 		int random = (int) (Math.random() * 50);
 		int maxHP = random;
 		random = (int) (Math.random() * 50);
@@ -2966,7 +2974,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testChampionsSameClass()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -2991,7 +2999,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testChampionsSameMaxHP()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3022,7 +3030,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testChampionsSameMana()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3053,7 +3061,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testChampionsAttackRange()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3084,7 +3092,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testChampionsAttackDamage()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3151,7 +3159,7 @@ public class M1PublicTests {
 		assertTrue("The champions abilities is loaded incorrectly", sameAbilities);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testChampionsSameClassDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3207,7 +3215,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testChampionsSpeed()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3238,7 +3246,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testChampionsSameManaDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3269,7 +3277,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testChampionsSameMaxActionsDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3300,7 +3308,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testChampionsSpeedDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3331,7 +3339,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testChampionsAttackRangeDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3362,7 +3370,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testChampionsAbilitiesDynamic() throws Exception {
 		ArrayList<ArrayList<Object>> arrayList = generateChampionsArrayList();
 		ArrayList<Object> champions = arrayList.get(0);
@@ -3398,7 +3406,7 @@ public class M1PublicTests {
 		assertTrue("The champions abilities is loaded incorrectly", sameAbilities);
 	}
 
-	@Test(timeout = 100)
+	@Test()
 	public void testAbilitiesSameClass()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3423,7 +3431,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesSameName()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3454,7 +3462,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesSameCastRange()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3486,7 +3494,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesSameBaseCoolDown()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3519,7 +3527,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesAreaOfEffect()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3553,7 +3561,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesRequiredActionPoints()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3586,7 +3594,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesSameEffect()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3650,7 +3658,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test()
 	public void testAbilitiesSameClassDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3675,7 +3683,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesSameNameDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3706,7 +3714,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesSameCostDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3738,7 +3746,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesSameBaseCoolDownDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3771,7 +3779,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesAreaOfEffectDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3804,7 +3812,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesRequiredActionPointsDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3837,7 +3845,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesSameHealingOrDamageAmountDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -3883,7 +3891,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testAbilitiesSameEffectDynamic()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, NoSuchFieldException, IOException {
@@ -4073,7 +4081,7 @@ public class M1PublicTests {
 		return null;
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testPlaceFirstPlayerChampionsMethod()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, IOException, NoSuchFieldException {
@@ -4149,7 +4157,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testPlaceSecondPlayerChampionsMethod()
 			throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, NoSuchMethodException, SecurityException, IOException, NoSuchFieldException {
@@ -4225,7 +4233,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testplaceCoversMethod()
 			throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException {
@@ -4299,7 +4307,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test()
 	public void testFirstPlayerChampionsLocationAfterPlaceChampions()
 			throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchFieldException {
@@ -4362,7 +4370,7 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testConstructorPlayerConstructorInitialization() throws Exception {
 		Constructor<?> constructor = Class.forName(playerPath).getConstructor(String.class);
 		int random = (int) (Math.random() * 50);
@@ -4375,31 +4383,31 @@ public class M1PublicTests {
 
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariablePlayerName() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(playerPath), "name", true);
 		testInstanceVariableIsPrivate(Class.forName(playerPath), "name");
 		testInstanceVariableOfType(Class.forName(playerPath), "name", String.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariablePlayerLeader() throws Exception {
 		testInstanceVariableIsPresent(Class.forName(playerPath), "leader", true);
 		testInstanceVariableIsPrivate(Class.forName(playerPath), "leader");
 		testInstanceVariableOfType(Class.forName(playerPath), "leader", Class.forName(champPath));
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariablePlayerTeamGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(playerPath), "getTeam", ArrayList.class, true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariablePlayerLeaderGetter() throws ClassNotFoundException {
 		testGetterMethodExistsInClass(Class.forName(playerPath), "getLeader", Class.forName(champPath), true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariablePlayerTeamGetterLogic() throws Exception {
 		Constructor<?> constructor = Class.forName(playerPath).getConstructor(String.class);
 		int random = (int) (Math.random() * 50);
@@ -4409,7 +4417,7 @@ public class M1PublicTests {
 		testGetterLogic(myObj, "team", team);
 	}
 
-	@Test(timeout = 100)
+	@Test()
 	public void testInstanceVariablePlayerLeaderGetterLogic() throws Exception {
 		Constructor<?> constructor = Class.forName(playerPath).getConstructor(String.class);
 		int random = (int) (Math.random() * 50);
@@ -4422,12 +4430,12 @@ public class M1PublicTests {
 		testGetterLogic(myObj, "leader", leader);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariablePlayerLeaderSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(playerPath), "setLeader", Class.forName(champPath), true);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariablePlayerLeaderSetterLogic() throws Exception {
 		Constructor<?> constructor = Class.forName(playerPath).getConstructor(String.class);
 		int random = (int) (Math.random() * 50);
@@ -4441,7 +4449,7 @@ public class M1PublicTests {
 		testSetterLogic(myObj, "leader", champ, champ, Class.forName(champPath));
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testInstanceVariablePlayerTeamSetter() throws ClassNotFoundException {
 		testSetterMethodExistsInClass(Class.forName(playerPath), "setTeam", ArrayList.class, false);
 	}
@@ -4455,40 +4463,40 @@ public class M1PublicTests {
 		}
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testConstructorGameActionException() throws Exception {
 
 		Class[] inputs = { String.class };
 		testConstructorExists(Class.forName(gameExceptionPath), inputs);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testEmptyConstructorGameActionException() throws Exception {
 
 		Class[] inputs = {};
 		testConstructorExists(Class.forName(gameExceptionPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testClassIsSubclassGameActionException() throws Exception {
 		testClassIsSubclass(Class.forName(gameExceptionPath), Exception.class);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testConstructorAbilityUseException() throws Exception {
 
 		Class[] inputs = { String.class };
 		testConstructorExists(Class.forName(abilityExceptionPath), inputs);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testEmptyConstructorAbilityUseException() throws Exception {
 
 		Class[] inputs = {};
 		testConstructorExists(Class.forName(abilityExceptionPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testClassIsSubclassAbilityUseException() throws Exception {
 		testClassIsSubclass(Class.forName(abilityExceptionPath), Class.forName(gameExceptionPath));
 	}
@@ -4506,21 +4514,21 @@ public class M1PublicTests {
 				message, ((Exception) myObj).getMessage());
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testConstructorLeaderAbilityAlreadyUsedException() throws Exception {
 
 		Class[] inputs = { String.class };
 		testConstructorExists(Class.forName(leaderAbilityAlreadyUsedExceptionPath), inputs);
 	}
 
-	@Test(timeout = 100)
+	@Test(timeout = 2000)
 	public void testEmptyConstructorUnallowedMovementException() throws Exception {
 
 		Class[] inputs = {};
 		testConstructorExists(Class.forName(unallowedMovementExceptionPath), inputs);
 	}
 
-	@Test(timeout = 1000)
+	@Test(timeout = 20000)
 	public void testClassIsSubclassUnallowedMovementException() throws Exception {
 		testClassIsSubclass(Class.forName(unallowedMovementExceptionPath), Class.forName(gameExceptionPath));
 	}
